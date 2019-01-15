@@ -11,20 +11,19 @@
 
     <!-- external css files -->
     <!-- build:css -->
-    <link rel="stylesheet" type="text/css" href="../lib/css/bootstrap_dark.css">
+    <link rel="stylesheet" type="text/css" href="../lib/css/bootstrap_dark_edited.css">
     <link rel="stylesheet" type="text/css" href="./index.css">
     <!-- endbuild -->
 
     <!-- all javascript files -->
     <!-- build:js -->
-    <script src="bis.js"></script>
-    <script src="../build/webcomponents-lite.js"></script>
-    <script src="../build/jquery.min.js"></script>
-    <script src="../build/three.min.js"></script>
-    <script src="../build/bootstrap.min.js"></script>
-    <script src="../build/libbiswasm_non_gpl_wasm.js"></script>
-    <script src="../build/bislib.js"></script>
-    <script src="../build/index.js"></script>
+    <script src="../build/web/webcomponents-lite.js"></script>
+    <script src="../build/web/jquery.min.js"></script>
+    <script src="../build/web/three.min.js"></script>
+    <script src="../build/web/bootstrap.min.js"></script>
+    <script src="../build/web/libbiswasm_nongpl_wasm.js"></script>
+    <script src="../build/web/bislib.js"></script>
+    <script src="../build/web/index_bundle.js"></script>
     <!-- endbuild -->
     <!-- end webpack/gulp modifications -->
 
@@ -34,6 +33,8 @@
 
 <body>
 
+  console.log('Bis =',window.bioimagesuiteweb);
+  
   <custom-menubar   id="menubar"></custom-menubar>
   <custom-form      id="mainwidget"></custom-form>
   <custom-mainapplication menubar="#menubar" form="#mainwidget"></custom-mainapplication>

@@ -87,12 +87,19 @@ const executeCommand=function(command,dir) {
 // Options 
 const options = {
     outdir : "./build/web",
+    lintscripts : ['code/*.js','config/*.js','web/*.js','*.js','test/*.js' ],
     name : 'index',
     alljs : [ 'webcomponents-lite.js', 'jquery.min.js', 'three.min.js', 'bootstrap.min.js', 'libbiswasm_nongpl_wasm.js', 'bislib.js', 'index_bundle.js'  ],
     allcss : [ 'bootstrap_dark_edited.css', 'index.css' ],
-    watch : false,
+    webpackwatch : false,
     debug : true,
-}
+    webserver : {
+        "root" : path.normalize(__dirname),
+        "host" : 'localhost', // change this to '0.0.0.0' to allow remote access
+        "port" : '8080',
+        'directoryListing': true,
+    },
+};
 
 gulp.task('clean', (done) => {
     rimraf.sync(options.outdir+'/web/*');
@@ -113,7 +120,10 @@ gulp.task('commonfiles', (done) => {
         gulp.src('./web/electronmain.js').pipe(gulp.dest(options.outdir)),
         gulp.src('./lib/css/bootstrap_dark_edited.css').pipe(gulp.dest(options.outdir)),
         gulp.src('./lib/js/webcomponents-lite.js').pipe(gulp.dest(options.outdir)),
+        gulp.src('./lib/js/bislib.js').pipe(gulp.dest(options.outdir)),
+        gulp.src('./lib/js/libbiswasm_nongpl_wasm.js').pipe(gulp.dest(options.outdir)),
         gulp.src('./node_modules/jquery/dist/jquery.min.js').pipe(gulp.dest(options.outdir)),
+        gulp.src('./node_modules/bootstrap/dist/js/bootstrap.min.js').pipe(gulp.dest(options.outdir)),
         gulp.src('./node_modules/three/build/three.min.js').pipe(gulp.dest(options.outdir)),
     ).on('end', () => {
         done();
@@ -139,14 +149,17 @@ gulp.task('mainhtml', (done) => {
         });
 });
 
+gulp.task('webackwatch', (done) => {
+    options.webpackwatch=true;
+    done();
+});
+
 gulp.task('webpack', (done) => {
 
 
     let cmd='webpack-cli --config '+path.join('config','webpack.config.js');
-    if (options.watch)
+    if (options.webpackwatch)
         cmd+=" --watch";
-    if (options.debug)
-        cmd+=' --verbose';
 
     executeCommand(cmd,__dirname).then( () => {
         done();
@@ -156,7 +169,56 @@ gulp.task('webpack', (done) => {
     
 });
 
+gulp.task('webserver', (done) => {
+    const webserver = require('gulp-webserver');
+    console.log(colors.red(getTime()+' server options=',JSON.stringify(options.webserver)));
+    return gulp.src('.').pipe(webserver(options.webserver));
+});
+
+
+gulp.task('eslint',  () => { 
+    // ESLint ignores files with "node_modules" paths.
+    // So, it's best to have gulp ignore the directory as well.
+    // Also, Be sure to return the stream from the task;
+    // Otherwise, the task may end before the stream has finished.
+
+    
+    const eslint = require('gulp-eslint');
+    return gulp.src(options.lintscripts)
+    // eslint() attaches the lint output to the "eslint" property
+    // of the file object so it can be used by other modules.
+        .pipe(eslint({
+            "env": {
+                "browser": true,
+                "node": true,
+                "commonjs": true,
+                "es6": true
+            },
+            "extends": "eslint:recommended",
+            "parserOptions": {
+                "sourceType": "module",
+                "ecmaVersion": 2017
+            },
+            "rules": {
+                'no-console': 'off',
+                'indent' : 'off',
+                "semi": [
+                    "error",
+                    "always"
+                ]
+            }
+        })).pipe(eslint.format());
+});
+
+
+gulp.task('watch', () => {
+    console.log(colors.yellow(getTime()+' Beginning to watch js files',options.lintscripts.join(','),' with eslint'));
+    return gulp.watch(options.lintscripts, gulp.series('eslint'));
+});
 
 
 
-gulp.task('build', gulp.parallel('commonfiles','mainhtml','webpack'));
+
+gulp.task('build', gulp.series('clean',gulp.parallel('commonfiles','mainhtml','webpack')));
+
+gulp.task('devel', gulp.series('clean','webackwatch',gulp.parallel('commonfiles','mainhtml','watch','webpack','webserver')));
