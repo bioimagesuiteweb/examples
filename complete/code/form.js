@@ -20,18 +20,18 @@ const formtext=`
       <form class="form">
 	<div class="form-group">
 	  <label for="weight">Weight</label>
-	  <input type="number" step="any" class="form-control" name="weight" placeholder="70.0">
+	  <input type="number" step="any" class="form-control" name="weight" placeholder="70.0" style="width:200px">
 	</div>
 	<div class="form-group">
 	  <label for="height">Height</label>
-	  <input type="number" step="any" class="form-control" name="height" placeholder="1.70">
+	  <input type="number" step="any" class="form-control" name="height" placeholder="1.70" style="width:200px">
 	</div>
 	<div class="checkbox">
 	  <label>
 	    <input type="checkbox" name="metric" checked="true"> Using Metric Units
 	  </label>
 	</div>
-	<button class="btn btn-primary" type="submit" name="compute">Compute BMI</button>
+	<button class="btn btn-primary" type="submit" name="compute" style="width:200px">Compute BMI</button>
       </form>
     <HR>`;
 
@@ -61,7 +61,6 @@ class CustomFormElement extends  HTMLElement {
 	// Create GUI
 	this.core_element=$(formtext);
 	this.appendChild(this.core_element[0]); // mapping for Jquery to regular web element
-        this.core_element.css({ 'width' : '80vw'});
 
 	this.weight_input=this.core_element.find(`[name='weight']`);
 	this.height_input=this.core_element.find(`[name='height']`);

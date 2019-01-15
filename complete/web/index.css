@@ -1,6 +1,6 @@
 #mainwidget {
-    top:  120px;
-    left: 10vw;
-    width: 80vw;
-    position: relative;
+    top:  150px;
+    left: 20px;
+    width : 400px;
+    position: absolute;
 }

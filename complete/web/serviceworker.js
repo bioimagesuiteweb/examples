@@ -7,7 +7,7 @@ self.addEventListener('install', function(event) {
   event.waitUntil(
     fetch(indexPage).then(function(response) {
       return caches.open('pwabuilder-offline').then(function(cache) {
-        console.log('[ServiceWroker] Cached index page during Install'+ response.url);
+          // console.log('[ServiceWroker] Cached index page during Install'+ response.url);
         return cache.put(indexPage, response);
       });
   }));
@@ -18,8 +18,8 @@ self.addEventListener('fetch', function(event) {
   var updateCache = function(request){
     return caches.open('pwabuilder-offline').then(function (cache) {
       return fetch(request).then(function (response) {
-        console.log('[ServiceWroker] add page to offline'+response.url)
-        return cache.put(request, response);
+          //          console.log('[ServiceWroker] add page to offline:'+response.url);
+          return cache.put(request, response);
       });
     });
   };
@@ -28,7 +28,7 @@ self.addEventListener('fetch', function(event) {
 
   event.respondWith(
     fetch(event.request).catch(function(error) {
-      console.log( '[ServiceWroker] Network request Failed. Serving content from cache: ' + error );
+        // console.log( '[ServiceWroker] Network request Failed. Serving content from cache: ' + error );
 
       //Check to see if you have it in the cache
       //Return response
@@ -36,9 +36,9 @@ self.addEventListener('fetch', function(event) {
       return caches.open('pwabuilder-offline').then(function (cache) {
         return cache.match(event.request).then(function (matching) {
           var report =  !matching || matching.status == 404?Promise.reject('no-match'): matching;
-          return report
+            return report;
         });
       });
     })
   );
-})
+});

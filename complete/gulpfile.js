@@ -136,7 +136,7 @@ const options = {
 // Clean all files in build/web
 // - - - - - - - - - - - - - - - - - - - -
 gulp.task('clean', (done) => {
-    rimraf.sync(options.outdir+'/web/*');
+    rimraf.sync(options.outdir);
     done();
 });
 
@@ -148,12 +148,13 @@ gulp.task('commonfiles', (done) => {
     es.concat(
         gulp.src([ 'node_modules/bootstrap/dist/css/*']).pipe(gulp.dest(options.outdir+'/css/')),
         gulp.src([ 'node_modules/bootstrap/dist/fonts/*']).pipe(gulp.dest(options.outdir+'/fonts/')),
-        gulp.src([ 'web/serviceworker.js']).pipe(gulp.dest(options.outdir+'/images/')),
+        gulp.src([ 'web/serviceworker.js']).pipe(gulp.dest(options.outdir)),
         gulp.src([ 'web/images/**/*']).pipe(gulp.dest(options.outdir+'/images/')),
         gulp.src([ 'lib/fonts/*']).pipe(gulp.dest(options.outdir+'/fonts/')),
         gulp.src([ 'lib/js/*.js']).pipe(gulp.dest(options.outdir+'/fonts/')),
         gulp.src([ 'web/index.css']).pipe(gulp.dest(options.outdir)),
         gulp.src([ 'web/manifest.json']).pipe(gulp.dest(options.outdir)),
+        gulp.src([ 'web/AppImages/**/*']).pipe(gulp.dest(options.outdir+'/AppImages')),
         gulp.src('./web/electronpreload.js').pipe(gulp.dest(options.outdir)),
         gulp.src('./web/electronmain.js').pipe(gulp.dest(options.outdir)),
         gulp.src('./lib/css/bootstrap_dark_edited.css').pipe(gulp.dest(options.outdir)),
@@ -325,6 +326,10 @@ gulp.task('electronpackage', (done) => {
     console.log(colors.red(getTime()+' removing '+modules_dir));
     rimraf.sync(modules_dir);
 
+    let icons_dir=path.join(indir,'AppImages');
+    console.log(colors.red(getTime()+' removing '+icons_dir));
+    rimraf.sync(icons_dir);
+
     executeCommand('npm install',indir).then( () => {
         // Modules in node_modules have been updated
 
@@ -368,6 +373,31 @@ gulp.task('electronpackage', (done) => {
 });
 
 // - - - - - - - - - - - - - - - - - - - - - - -
+gulp.task('zip', (done) => {
+
+    
+    const gulpzip = require('gulp-zip');
+    let zname=path.resolve(path.join(__dirname,path.join('build/dist/',`${appinfo.name}_${appinfo.version}_webpage.zip`)));
+    let appdir=path.resolve(path.join(__dirname,'build/web'));
+    let distdir=path.resolve(path.join(__dirname,'build/dist'));
+    let basez=path.basename(zname);
+
+
+    let modules_dir=path.join(appdir,'node_modules');
+    console.log(colors.red(getTime()+' removing '+modules_dir));
+    rimraf.sync(modules_dir);
+
+    console.log(getTime()+' creating zip file: outfile = ',zname);
+    console.log(getTime()+' input webpage directory=',appdir);
+    gulp.src([appdir+'/**/*'], {base : appdir}).
+        pipe(gulpzip(basez)).
+        pipe(gulp.dest(distdir)).on('end', () => {
+            let mbytes=getFileSizeInMB(zname);
+            console.log(getTime()+' ____ zip file created in '+zname+' (size='+mbytes+' MB )');
+            done();
+        });
+});
+// - - - - - - - - - - - - - - - - - - - - - - -
 // Build task -- create everything in build/web
 // - - - - - - - - - - - - - - - - - - - - - - - 
 gulp.task('build', gulp.series('clean',gulp.parallel('commonfiles','mainhtml','webpack')));
@@ -376,6 +406,11 @@ gulp.task('build', gulp.series('clean',gulp.parallel('commonfiles','mainhtml','w
 // Package task, creates electron package
 // - - - - - - - - - - - - - - - - - - - - - - -
 gulp.task('package',gulp.series('build','electronpackage'));
+
+// - - - - - - - - - - - - - - - - - - - - - - -
+// Package task, creates webpage package
+// - - - - - - - - - - - - - - - - - - - - - - -
+gulp.task('webpage',gulp.series('build','zip'));
 
 // - - - - - - - - - - - - - - - - - - - - - - -
 // Devel task
