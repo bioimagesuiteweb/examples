@@ -15,7 +15,7 @@ Then start the webserver using
 
     gulp webserver
     
-__ If you are lazy; just typing `gulp` will execute these two steps in series.__
+_If you are lazy; just typing `gulp` will execute these two steps in series._
     
 Then, if does not open automatically, navigate to
 [http://localhost:8080/web/index.html](http://localhost:8080/web/index.html).
