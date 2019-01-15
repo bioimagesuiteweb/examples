@@ -30,6 +30,7 @@ const gulp = require('gulp'),
       rimraf=require('rimraf'),
       es = require('event-stream');
 
+const appinfo=require('./package.json');
 
 // ------------------------------------ A couple of utility functions -------------------------------
 
@@ -83,6 +84,27 @@ const executeCommand=function(command,dir) {
 };
 
 
+
+var getFileSizeInMB=function(outfile) {
+
+    try {
+        let stats = fs.statSync(outfile);
+        
+        let mb=Math.round(10.0*stats.size/(1024*1024))*0.1;
+        let s=`${mb}`;
+        let ind=s.lastIndexOf(".");
+        
+        //        console.log('Raw file size of ',outfile,'=',stats.size,mb,s,'ind =',ind);
+        if (ind>=0)
+            return s.substr(0,ind+2);
+        return s;
+    } catch(e) {
+        console.log('Error=',e);
+        return -1;
+    }
+};
+
+
 // --------------------------------------------------------------------------------------------------
 // Options 
 const options = {
@@ -99,7 +121,10 @@ const options = {
         "port" : '8080',
         'directoryListing': true,
     },
+    electronversion : "4.0.1",
 };
+
+
 
 
 // --------------------------------------------------------------------------------------------------
@@ -138,6 +163,21 @@ gulp.task('commonfiles', (done) => {
         gulp.src('./node_modules/bootstrap/dist/js/bootstrap.min.js').pipe(gulp.dest(options.outdir)),
         gulp.src('./node_modules/three/build/three.min.js').pipe(gulp.dest(options.outdir)),
     ).on('end', () => {
+
+        let outinfo = { };
+        outinfo.name=appinfo.name;
+        outinfo.version=appinfo.version;
+        outinfo.main='electronmain.js';
+        outinfo.license=appinfo.license;
+        outinfo.description=appinfo.description;
+        outinfo.repository='https://github.com/bioimagesuiteweb/examples/',
+        outinfo["dependencies"]=  {
+            "electron-debug": "^1.0.1",
+            "glob": "^7.1.1",
+            "rimraf": "2.6.2"
+        };
+
+        fs.writeFileSync(path.join(__dirname,'build/web/package.json'),JSON.stringify(outinfo,null,2));
         done();
     });
 });
@@ -245,12 +285,96 @@ gulp.task('watch', () => {
     return gulp.watch(options.lintscripts, gulp.series('eslint'));
 });
 
+// - - - - - - - - - - - - - - - - - - - - - - - - - 
+// Create Electron package from build/web directory
+//     store in build/dist
+// - - - - - - - - - - - - - - - - - - - - - - - - -
+gulp.task('electronpackage', (done) => {
+
+    const indir=path.resolve(__dirname,path.join('build','web'));
+    const distdir=path.normalize(path.resolve(__dirname,path.join('build','dist')));
+    const gulpzip = require('gulp-zip');
+    const platform = os.platform();
+    let inwin32=false;
+    
+    if (platform==='win32') {
+        inwin32=true;
+    }
+
+    const version=options.electronversion;
+
+    let errorf=function() { };
+    console.log(colors.cyan(getTime()+' Using electron '+version+' for: '+platform));
+
+
+    let name=platform;
+    let suffix=".zip";
+    if (name==="darwin") {
+        name="macos";
+        suffix=".app.zip";
+    }
+
+    let zipindir=appinfo.name+'-'+name+'-x64';
+    
+    let appdir=path.join(distdir,zipindir);
+    console.log(colors.red(getTime()+' removing '+appdir));
+    rimraf.sync(appdir);
+
+    let modules_dir=path.join(indir,'node_modules');
+    console.log(colors.red(getTime()+' removing '+modules_dir));
+    rimraf.sync(modules_dir);
+
+    executeCommand('npm install',indir).then( () => {
+        // Modules in node_modules have been updated
+
+        let zname=path.resolve(path.join(indir,path.join('..',`dist/${appinfo.name}_${appinfo.version}_${name}.zip`)));
+
+        // appinfo is package.json!
+        let basefile=distdir+"/"+appinfo.name+'_'+appinfo.version;
+        let zipfile=basefile+suffix;
+        
+        let eversion = options.electronversion;
+        let cmdline='electron-packager '+indir+' '+appinfo.name+' --arch=x64 --electron-version '+eversion+' --out '+path.resolve(distdir)+' --overwrite --app-version '+appinfo.version;
+        
+        let ifile=path.resolve(__dirname,'web/images/logo.ico');
+        if (inwin32)
+            cmdline+=` --platform=win32 --icon ${ifile}`;
+        else if (platform==='linux')
+            cmdline+=' --platform=linux';
+        else
+            cmdline+='--platform=darwin --icon '+path.resolve(__dirname,'web/images/logo.icns');
+
+        executeCommand(cmdline,indir).then( () => {
+
+            let basez=path.basename(zname);
+            console.log(getTime()+' creating zip file: outfile = ',zname);
+            console.log(getTime()+' input app directory=',appdir);
+            gulp.src([appdir+'/**/*'], {base : appdir}).
+                pipe(gulpzip(basez)).
+                pipe(gulp.dest(distdir)).on('end', () => {
+                    let mbytes=getFileSizeInMB(zname);
+                    console.log(getTime()+' ____ zip file created in '+zname+' (size='+mbytes+' MB )');
+                    done();
+                });
+        }).catch( (e) => {
+            console.log(e);
+            process.exit(1);
+        });
+    }).catch( (e) => {
+        console.log(e);
+        process.exit(1);
+    });
+});
 
 // - - - - - - - - - - - - - - - - - - - - - - -
 // Build task -- create everything in build/web
 // - - - - - - - - - - - - - - - - - - - - - - - 
 gulp.task('build', gulp.series('clean',gulp.parallel('commonfiles','mainhtml','webpack')));
 
+// - - - - - - - - - - - - - - - - - - - - - - -
+// Package task, creates electron package
+// - - - - - - - - - - - - - - - - - - - - - - -
+gulp.task('package',gulp.series('build','electronpackage'));
 
 // - - - - - - - - - - - - - - - - - - - - - - -
 // Devel task
