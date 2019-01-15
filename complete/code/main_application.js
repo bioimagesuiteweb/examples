@@ -91,6 +91,10 @@ class CustomMainApplication extends  HTMLElement {
             // Must be at least 800 pixels wide for bootstrap menu to appear
             // normally as opposed to minimized
             window.resizeTo(800, 500);
+            window.addEventListener( 'resize', () => {
+                window.resizeTo(800, 500);
+            });
+                
         } else {
             // Register the service worker and
             // if possible optionally add an 'install application' button to this
