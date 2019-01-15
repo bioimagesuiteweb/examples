@@ -7,7 +7,7 @@ browser does not handle by default, needs to be `compiled` by webpack to yield
 a clean bundle that is browser compatible.
 
 Since we move to webpack we can also use `npm` to install runtime dependencies
-such as jQuery and Bootstrap, hence unlike [step3](../step3) there is no
+such as jQuery and Bootstrap, hence unlike [step3](../step03) there is no
 externals directory here. Dependencies are managed via npm by including them
 in the `package.json` file.
 

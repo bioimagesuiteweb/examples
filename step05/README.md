@@ -1,6 +1,6 @@
 # Converting our web-application to the Desktop using Electron
 
-This is a rehash of [step4](./step4) but now also showing how to run our
+This is a rehash of [step04](./step04) but now also showing how to run our
 application on the desktop using Electron.
 
 ## Install Dependencies

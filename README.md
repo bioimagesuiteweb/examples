@@ -1,5 +1,7 @@
 # Examples
-Example Code for BENG 406b and other uses
+
+This is example code for BioImage Suite Web (and also serves as a tutorial for
+the Yale Course ``Medical Software Design`` (BENG 406b, Spring 2019). 
 
 ## Before you begin
 
@@ -19,18 +21,18 @@ complexity. Here is the list
 * [Complete](./complete) -- the full example with desktop and electron and pwa
   versions.
   
-* [Step 1](./step1) -- a simple commandline (node.js)  `helloworld` application.
-* [Step 2](./step2) -- a slightly more complex node.js application showing how
+* [Step 1](./step01) -- a simple commandline (node.js)  `helloworld` application.
+* [Step 2](./step02) -- a slightly more complex node.js application showing how
   to use a module.
-* [Step 3](./step3) -- a simple web-based application showing how to use an
+* [Step 3](./step03) -- a simple web-based application showing how to use an
   old-fashioned module.
-* [Step 4](./step4) -- a redo of step 3 using proper modules and the webpack ''bundler''.
-* [Step 5](./step5) -- a redo of step 4 but now as a desktop application using
+* [Step 4](./step04) -- a redo of step 3 using proper modules and the webpack ''bundler''.
+* [Step 5](./step05) -- a redo of step 4 but now as a desktop application using
   Electron.
-* [Step 6](./step6) -- moving step 5 to web-components (custom web elements)
+* [Step 6](./step06) -- moving step 5 to web-components (custom web elements)
 
 ... to come ...
 
-* [Step 7](./step7) -- a redo of step 6 using
+* [Step 7](./step07) -- a redo of step 6 using
   [BioImage Suite Web code](https://github.com/bioimagesuiteweb/bisweb) to
   create menus, file dialogs and file I/O

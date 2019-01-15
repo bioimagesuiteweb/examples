@@ -1,4 +1,4 @@
-## Yale BENG 406b Example
+## Yale BENG 406b Complete Example
 
 This is a complex example made available to the students of Yale BENG 406b
 (Spring 2019). It makes use of some code from

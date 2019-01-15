@@ -1,6 +1,6 @@
 # Using Web components
 
-This is a rehash of [step5](./step5) to use custom web elements (or
+This is a rehash of [step05](./step05) to use custom web elements (or
 webcomponents). We define a single component `custom-form` and include it in
 `web/index.html` as:
 
@@ -59,7 +59,7 @@ This does three things:
 
 ## The code -- creating and registering custom web elements
 
-This is identical to [Step 5](./step5) other than for the fact the code in
+This is identical to [Step 5](./step05) other than for the fact the code in
 `index.js` is now simply a require statement to load `form.js`.
 
 In `form.js` we define our component. Three things are particularly worth
