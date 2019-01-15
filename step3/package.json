@@ -1,0 +1,11 @@
+{
+    "name": "beng406example3",
+    "version": "1.0.0",
+    "description": "Example 3 for BENG 406b",
+    "author": "Xenios Papademetris",
+    "license": "Apache-2.0",
+    "devDependencies": {
+        "gulp": "4.0.0",
+        "gulp-webserver": "0.9.1"
+    }
+}

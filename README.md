@@ -19,5 +19,8 @@ complexity. Here is the list
 * [Complete](./complete) -- the full example with desktop and electron and pwa
   versions.
   
-
+* [Step 1](./step1) -- a simple commandline (node.js)  `helloworld` application.
+* [Step 2](./step2) -- a slightly more complex node.js application showing how
+  to use a module.
+* [Step 3](./step3) -- a simple web-based application showing how to use an old-fashioned module.
 

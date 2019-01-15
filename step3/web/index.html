@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <title>BMI Computation Tool</title>
+    <meta name="viewport" content="width=device-width, user-scalable=no">
+    <link rel="icon" href="images/logo.ico">
+
+    <!-- css files -->
+
+    <link rel="stylesheet" type="text/css" href="../external/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="./index.css">
+
+    <!-- JS files -->
+    <script src="../external/jquery.min.js"></script>
+    <script src="../external/bootstrap.min.js"></script>
+    <script src="./bmimodule.js"></script>
+    <script src="./index.js"></script>
+</head>
+<body>
+
+<div id="mainwidget">
+
+  <form class="form">
+    <div class="form-group">
+      <label for="weight">Weight</label>
+      <input type="number" step="any" class="form-control" id="weight" placeholder="70.0">
+    </div>
+    <div class="form-group">
+      <label for="height">Height</label>
+      <input type="number" step="any" class="form-control" id="height" placeholder="1.70">
+    </div>
+    <div class="checkbox">
+      <label>
+	<input type="checkbox" id="metric" checked="true"> Using Metric Units
+      </label>
+    </div>
+    <button class="btn btn-primary" type="submit" id="compute">Compute BMI</button>
+  </form>
+  <HR>
+  <div id="result"></div>
+  <HR>
+</div>
+  
+</body>
+</html>
+
