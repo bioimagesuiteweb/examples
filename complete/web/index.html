@@ -8,16 +8,34 @@
     <link rel="icon" href="images/logo.ico">
     <!-- begin browserify/gulp modifications -->
 
+
+    <!-- begin webpack/gulp modifications -->
+    <!-- external css files -->
+    <!-- build:css -->
     <link rel="stylesheet" type="text/css" href="../node_modules/bootstrap/dist/css/bootstrap.css">
-    <link rel="stylesheet" type="text/css" href="../css/index.css">
-    <script src="../build/build.js"></script>
+    <link rel="stylesheet" type="text/css" href="./index.css">
+    <!-- endbuild -->
+
+    <!-- all javascript files -->
+    <!-- build:js -->
+    <script src="bis.js"></script>
+    <script src="../build/webcomponents-lite.js"></script>
+    <script src="../build/jquery.min.js"></script>
+    <script src="../build/three.min.js"></script>
+    <script src="../build/bootstrap.min.js"></script>
+    <script src="../build/libbiswasm_non_gpl_wasm.js"></script>
+    <script src="../build/bislib.js"></script>
+    <script src="../build/index.js"></script>
+    <!-- endbuild -->
+    <!-- end webpack/gulp modifications -->
+
+    
 
 <body>
 
-<custom-menubar   id="menubar"></custom-menubar>
-<custom-form      id="mainwidget"></custom-form>
-<custom-mainapplication menubar="#menubar" form="#mainwidget"></custom-mainapplication>
-
+  <custom-menubar   id="menubar"></custom-menubar>
+  <custom-form      id="mainwidget"></custom-form>
+  <custom-mainapplication menubar="#menubar" form="#mainwidget"></custom-mainapplication>
   
 </body>
 </html>
