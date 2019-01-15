@@ -1,7 +1,8 @@
 # Examples
 
-This is example code for BioImage Suite Web (and also serves as a tutorial for
-the Yale Course ``Medical Software Design`` (BENG 406b, Spring 2019). 
+This is example code for BioImage Suite Web. It introduces certain JavaScript
+and Software Engineering Concepts. It was developed in part also for the needs
+of the Yale Course ``Medical Software Design`` (BENG 406b, Spring 2019). 
 
 ## Before you begin
 
