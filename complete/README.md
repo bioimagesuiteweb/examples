@@ -66,9 +66,9 @@ Then open http://localhost:8080/build/web/index.html as usual.
 
 If you are at Yale you may open the application by going to 
 
-    https://git.yale.edu/pages/xenios/biswebtest/
+[https://git.yale.edu/pages/xenios/biswebtest/](https://git.yale.edu/pages/xenios/biswebtest/)
 
 See if you have an option under the Help menu to install this as a PWA (as
 shown below)
 
-![./docs/pwa.jpg](Install as PWA)
+![Install as PWA](./docs/pwa.jpg)

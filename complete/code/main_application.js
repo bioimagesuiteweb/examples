@@ -97,8 +97,9 @@ class CustomMainApplication extends  HTMLElement {
 	    // create about dialog
 	    let dlg=webutil.createmodal("About this Application","modal-sm");
 	    
-	    let content=$('<P>This application computs the body-mass index for a patient.'+
-			  'For more information please see <a href="https://www.nhlbi.nih.gov/health/educational/lose_wt/bmitools.htm" target="#_blank"> this NIH website </a></P>');
+	    let content=$(`<P>This application computs the body-mass index for a patient.
+			  For more information please see <a href="https://www.nhlbi.nih.gov/health/educational/lose_wt/bmitools.htm" target="#_blank"> this NIH website</a>.</P>
+                          <P>The source code for this can be found at <a href="https://github.com/bioimagesuiteweb/examples/tree/master/complete" target="#_blank"> on Github.</a></P>`);
 	    dlg.body.append(content);
 	    this.aboutdialog=dlg;
 	}
