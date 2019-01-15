@@ -24,7 +24,7 @@ const formtext=`
 	</div>
 	<div class="form-group">
 	  <label for="height">Height</label>
-	  <input type="number" step="any" class="form-control" name="height" placeholder="1.70" style="width:200px">
+	  <input type="number" step="any" class="form-control" name="height" placeholder="1.80" style="width:200px">
 	</div>
 	<div class="checkbox">
 	  <label>
@@ -75,7 +75,7 @@ class CustomFormElement extends  HTMLElement {
 
     	this.setValues({
 	    weight : 70.0,
-	    height : 1.69,
+	    height : 1.70,
 	    ismetric  : true,
 	});
 

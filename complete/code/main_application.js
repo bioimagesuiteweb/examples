@@ -15,7 +15,7 @@ const bioimagesuiteweb=require('bislib');
 // Code to Create GUI elements
 const webutil=bioimagesuiteweb.webutil;
 const webfileutil=bioimagesuiteweb.webfileutil;
-
+const pwautils=require('pwautils');
 // -----------------------------------------------------------------
 /**
  * The custom form element
@@ -35,6 +35,8 @@ class CustomMainApplication extends  HTMLElement {
 	
 	super();
 	this.aboutdialog=null;
+
+        pwautils.registerServiceWorker();
     }
 
     connectedCallback() {
@@ -81,10 +83,13 @@ class CustomMainApplication extends  HTMLElement {
 			       () => {
 				   this.about();
 			       });
-	
+
+        // Register the service worker and
+        // if possible optionally add an 'install application' button to this
+        pwautils.addInstallButton(hmenu);
     }
     
-    
+    /** Show about dialog*/
     about() {
     
 	if (this.aboutdialog===null) {
@@ -101,6 +106,7 @@ class CustomMainApplication extends  HTMLElement {
 	//	show about dialog
 	this.aboutdialog.dialog.modal('show');
     }
+
 }
 
 

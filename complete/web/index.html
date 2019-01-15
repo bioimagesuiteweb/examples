@@ -37,31 +37,8 @@
   <custom-menubar   id="menubar"></custom-menubar>
   <custom-form      id="mainwidget"></custom-form>
   <custom-mainapplication menubar="#menubar" form="#mainwidget"></custom-mainapplication>
+  <custom-statusbar></custom-statusbar> 
 
-
-  <nav class="navbar navbar-default navbar-fixed-bottom"  style="min-height:25px; max-height:25px">
-    <div style="display: inline-block;margin-top:1px; padding-left:2px; padding-right:5px;margin-bottom:1px;height:10px;font-size:14px;float:left">
-      <img src="images/bottomlogo.png" height="20px"/>
-    </div>
-    <div style="display: inline-block;margin-top:1px; padding-left:2px; padding-right:5px;margin-bottom:1px;height:10px;font-size:14px;float:right">
-      <p>This application is an example for Yale BENG 406b</p>
-    </div>
-  </nav>
-  
-  <script>
-
-    //Add this below content to your HTML page, or add the js file to your page at the very top to register service worker
-    if (navigator.serviceWorker.controller) {
-       console.log('[PWA Builder] active service worker found, no need to register')
-    } else {
-       //Register the ServiceWorker
-       navigator.serviceWorker.register('serviceworker.js', {
-             scope: './'
-       }).then(function(reg) {
-          console.log('Service worker has been registered for scope:'+ reg.scope);
-       });
-    }
-  </script>
   <noscript>Your browser does not support JavaScript!</noscript>
   
 </body>

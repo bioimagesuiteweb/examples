@@ -4,3 +4,4 @@
 require('menubar');
 require('form');
 require('main_application');
+require('statusbar');

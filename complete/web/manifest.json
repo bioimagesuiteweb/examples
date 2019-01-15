@@ -1,7 +1,7 @@
 {
     "name": "BENG 406 Example",
     "description": "An example from Yale BENG 406",
-    "short_name": "beng406",
+    "short_name": "beng406example",
     "theme_color": "#375a7f",
     "background_color": "#375a7f",
     "display": "standalone",

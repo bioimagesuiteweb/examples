@@ -19,16 +19,16 @@
 /* global  window,Buffer,__dirname */
 "use strict";
 
+
 const electron= require('electron');
 const remote=electron.remote;
 
-
-
+/**
+ * This code below must define window.BISELECTRON in the same way as BioImage Suite Web
+ * as the code in bislib.js expects to find a variable with this name and contents
+ */
 
 window.BISELECTRON = {
-    // ----------------------------------------------------
-    // Add modules here
-    // ----------------------------------------------------
     version : '1.0',
     bispath : __dirname,
     fs : require('fs'),
@@ -42,9 +42,7 @@ window.BISELECTRON = {
     remote : remote,
     Buffer : Buffer,
     electron : electron,
-    tf : null,
 };
-
 
 process.once('loaded', () => {
     global.electron = require('electron');
@@ -52,21 +50,60 @@ process.once('loaded', () => {
 });
 
 
-try {
-    window.BISELECTRON.tf=require('@tensorflow/tfjs');
+/**
+ * Function to laod tensorflow -- this is called from a
+ * BioImage Suite Web Module
+ *
+ * @param{Number} mode - 2 -> GPU, 1= CPU, 0=Webgl
+*/
+window.BISELECTRON.loadtf=((mode) => {
+
+    let tf=null;
+    let tfmodulename='electron js';
+    let done=false;
+
     try {
-        require('@tensorflow/tfjs-node-gpu');
-        window.BISELECTRON.tfmodulename='electron tjsfs-node-gpu';
+        tf=require('@tensorflow/tfjs');
     } catch(e) {
-        console.log('Failed to load gpu version '+e);
-        try {
-            require('@tensorflow/tfjs-node');
-            window.BISELECTRON.tfmodulename='electron tfjs-node';
-            console.log("Loaded cpu version of tfjs");
-        } catch(e) {
-            console.log('Failed to load cpu version '+e);
+        console.log('---- no tensorflow modules available');
+        return {
+            tf : null,
+            name : ''
+        };
+    }
+
+
+    if (mode>0) {
+        
+        if (mode>1) {
+            try {
+                require('@tensorflow/tfjs-node-gpu');
+                tfmodulename='electron tjsfs-node-gpu';
+                done=true;
+            } catch(e) {
+                console.log('Failed to load gpu version '+e);
+            }
+        }
+
+        if (!done) {
+            try {
+                require('@tensorflow/tfjs-node');
+                tfmodulename='electron tfjs-node';
+                console.log("Loaded cpu version of tfjs");
+            } catch(e) {
+                console.log('Failed to load cpu version '+e);
+            }
+        }
+    
+        if (done===false) {
+            console.log('---- no tensorflow-node.js modules available');
         }
     }
-} catch(e) {
-    console.log('---- no tensorflow-node.js modules available');
-}
+    
+    return {
+        tf : tf,
+        name : tfmodulename
+    };
+
+});
+
