@@ -2,9 +2,6 @@
 "use strict";
 
 const $=require('jquery');
-// The next two lines are needed for bootstrap
-window.jQuery=$;
-require('bootstrap');
 
 
 const menubartext=`

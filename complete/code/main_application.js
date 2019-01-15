@@ -9,9 +9,11 @@
 
 // JQuery
 const $=require('jquery');
+const bioimagesuiteweb=require('bislib');
+
 
 // Code to Create GUI elements
-const webutil=require('./bis_webutil');
+const webutil=bioimagesuiteweb.webutil;
 
 // -----------------------------------------------------------------
 /**

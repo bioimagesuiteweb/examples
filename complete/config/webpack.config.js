@@ -19,18 +19,22 @@
 
 const path=require('path');
 
-const indir=path.resolve(path.join(path.join(__dirname,'..'),'web'));
-const outdir=path.resolve(path.join(path.join(__dirname,'..'),'build'));
+const basedir=path.resolve(path.join(__dirname,'..'));
+const indir=path.resolve(path.join(basedir,'web'));
+const outdir=path.resolve(path.join(basedir,'build'));
 
-console.log('++++ Webpack indir =',indir);
-console.log('++++         outdir=',outdir);
+console.log('++++');
+console.log('++++ Webpack basedir =',basedir);
+console.log('++++         indir   =',indir);
+console.log('++++         outdir  =',outdir);
+console.log('++++');
 
 module.exports = {
     resolve: {
         extensions: [ '.js'],
-        modules : [ path.resolve(mypath,'node_modules'),
-                    path.resolve(mypath,'lib/js'),
-                    path.resolve(mypath,'code'),
+        modules : [ path.resolve(basedir,'node_modules'),
+                    path.resolve(basedir,'lib/js'),
+                    path.resolve(basedir,'code'),
                   ],
     },
     mode : 'development',
@@ -38,15 +42,17 @@ module.exports = {
     output : {
         path : outdir,
         filename : 'index_bundle.js',
-    
+    },
     target : "web",
     externals: {
         "jquery": "jQuery",             // require("jquery") is external and available on the global var jQuery
+        "three": "THREE",               // require("jquery") is external and available on the global var jQuery
+        "bislib": "window.bioimagesuiteweb",             // require("jquery") is external and available on the global var jQuery
     },
     watchOptions: {
         aggregateTimeout: 300,
         poll: 1000
     }
-}
+};
 
 

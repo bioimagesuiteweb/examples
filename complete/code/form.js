@@ -6,16 +6,11 @@
 "use strict";
 
 const $=require('jquery');
-
-// The next two lines are needed for bootstrap
-window.jQuery=$;
-require('bootstrap');
+const bioimagesuiteweb=require('bislib');
 
 // Code to Create GUI elements
-const webutil=require('./bis_webutil');
-
-// Code to read and write files
-const bisgenericio=require('./bis_genericio');
+const webutil=bioimagesuiteweb.webutil;
+const bisgenericio=bioimagesuiteweb.genericio;
 
 // The BMI Module Code
 const bmi=require('./bmimodule');
