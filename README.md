@@ -11,6 +11,13 @@ Example Code for BENG 406b and other uses
         sudo npm install -g electron --unsafe-perm=true --allow-root
         sudo npm install -g electron-packager
 
-### 
+### Examples
+
+This repository will eventually contain examples of increasing
+complexity. Here is the list
+
+* [Complete](./complete) -- the full example with desktop and electron and pwa
+  versions.
+  
 
 
