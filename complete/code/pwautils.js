@@ -78,9 +78,16 @@ let addInstallButton= function(helpmenu) {
 };
 
 
+// https://stackoverflow.com/questions/52000972/pwa-fixed-screensize
+let inPWA=function() {
+
+    return (window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone === true)
+}
+
 // Export functions
 module.exports = {
     addInstallButton,
-    registerServiceWorker
+    registerServiceWorker,
+    inPWA,
 };
 

@@ -84,9 +84,18 @@ class CustomMainApplication extends  HTMLElement {
 				   this.about();
 			       });
 
-        // Register the service worker and
-        // if possible optionally add an 'install application' button to this
-        pwautils.addInstallButton(hmenu);
+
+        // Resize window if inside a PWA
+        if (pwautils.inPWA()) {
+            // Set the window size
+            // Must be at least 800 pixels wide for bootstrap menu to appear
+            // normally as opposed to minimized
+            window.resizeTo(800, 500);
+        } else {
+            // Register the service worker and
+            // if possible optionally add an 'install application' button to this
+            pwautils.addInstallButton(hmenu);
+        }
     }
     
     /** Show about dialog*/
