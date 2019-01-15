@@ -22,5 +22,7 @@ complexity. Here is the list
 * [Step 1](./step1) -- a simple commandline (node.js)  `helloworld` application.
 * [Step 2](./step2) -- a slightly more complex node.js application showing how
   to use a module.
-* [Step 3](./step3) -- a simple web-based application showing how to use an old-fashioned module.
+* [Step 3](./step3) -- a simple web-based application showing how to use an
+  old-fashioned module.
+* [Step 4](./step4) -- a redo of step 3 using proper modules and the webpack ''bundler''.
 

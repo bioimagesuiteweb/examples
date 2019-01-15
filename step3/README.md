@@ -16,13 +16,14 @@ Then, if does not open automatically, navigate to
 
 ## The code
 
-This page consists of essentially 4 groups of files
+This page consists of essentially 5 groups of files
 
 1. Some external dependencies (jQuery and Bootstrap) in the external directory
 2. The main page `web/index.html`.
 3. The main css file `web/index.css`.
 4. A module to compute BMI in `web/bmimodule.js`,
 5. The main JS file in `web/index.js`.
+
 
 
 
