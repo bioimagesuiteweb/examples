@@ -6,7 +6,11 @@ of the Yale Course ``Medical Software Design`` (BENG 406b, Spring 2019).
 
 ## Before you begin
 
- * Install Node.js 10.x (LTS)
+ * Install Node.js 10.x (LTS) -- you may download this from:
+
+    [https://nodejs.org/en/download/](https://nodejs.org/en/download/). 
+    
+ 
  * Install the following global prerequisites using `npm` (on a MS-Windows
    machine __omit `sudo`__)
 
