@@ -60,7 +60,8 @@ class CustomFormElement extends  HTMLElement {
 
 	// Create GUI
 	this.core_element=$(formtext);
-	this.appendChild(this.core_element[0]);
+	this.appendChild(this.core_element[0]); // mapping for Jquery to regular web element
+        this.core_element.css({ 'width' : '400px'});
 
 	this.weight_input=this.core_element.find(`[name='weight']`);
 	this.height_input=this.core_element.find(`[name='height']`);
@@ -154,6 +155,9 @@ class CustomFormElement extends  HTMLElement {
 	    newvalues.height=obj.height || 1.70;
 	    newvalues.ismetric=obj.ismetric || false;
 	    this.setValues(newvalues);
+
+            webutil.createAlert('Loaded from '+f.filename,false);
+            
 	}).catch( (e) => {
             webutil.createAlert(e,true);
         });

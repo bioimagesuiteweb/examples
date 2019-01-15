@@ -33,6 +33,9 @@ var createWindow=function() {
      				 });
     
     // Register callbacks
+    mainWindow.setAutoHideMenuBar(true);
+    mainWindow.setMenuBarVisibility(false);
+
     mainWindow.once('ready-to-show', () => { mainWindow.show(); });
     mainWindow.on('closed', () => { mainWindow = null;});
     
