@@ -14,6 +14,7 @@ const bioimagesuiteweb=require('bislib');
 
 // Code to Create GUI elements
 const webutil=bioimagesuiteweb.webutil;
+const webfileutil=bioimagesuiteweb.webfileutil;
 
 // -----------------------------------------------------------------
 /**
@@ -48,28 +49,37 @@ class CustomMainApplication extends  HTMLElement {
 
 	// Create File Menu
 	let fmenu=webutil.createTopMenuBarMenu("File",menubar);
-	webutil.createMenuItem(fmenu,'Load State',
-			       function(f) {
-				   form.load(f);
-			       },
-			       '.json',
-			       { title : 'BMI State File',
-				 save : false,
-				 filters : [ { name: 'JSON formatted State definition file', extensions: ['json']}],
-			       });
-    
-	webutil.createMenuItem(fmenu,'Save State',
-			       function() {
-				   form.save();
-			       });
+
+        webfileutil.createFileMenuItem(fmenu,'Load Application State',
+                                       (f) => {
+                                           form.load(f);
+                                       },
+                                       { title: 'Load Application State',
+                                         save: false,
+                                         suffix : ".json",
+                                         filters : [ { name: 'Application State File', extensions: [ "json"]}],
+                                       }
+                                      );
+        
+
+
+        webfileutil.createFileMenuItem(fmenu, 'Save Application State',
+                                       (f) => {
+                                           form.save(f);
+                                       },
+                                       {
+                                           title: 'Save Application State',
+                                           save: true,
+                                           filters : [ { name: 'Application State File', extensions: [ "json"  ]}],
+                                           suffix : ".json",
+                                           initialCallback : () => { return "mybmi.json"; }
+                                       });
 	
-	// This is not always this so store value in self and use this in callback!
-	const self=this;
 	// Create the Help Menu
 	let hmenu=webutil.createTopMenuBarMenu("Help",menubar);
 	webutil.createMenuItem(hmenu,'About this Application',
-			       function() {
-				   self.about();
+			       () => {
+				   this.about();
 			       });
 	
     }

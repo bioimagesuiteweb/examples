@@ -140,22 +140,23 @@ class CustomFormElement extends  HTMLElement {
     load(fileobject) {
     
 	// Read returns a structure f
-	bisgenericio.read(fileobject)
-	    .then( (f) => {
-		
-		let obj = { };
-		try { 
-		    obj= JSON.parse(f.data);
-		}  catch(e) {
-		    webutil.createAlert(`Failed to parse input file ${f.filename}`,true);
-		}
-
-		let newvalues = {};
-		newvalues.weight=obj.weight || 70.0;
-		newvalues.height=obj.height || 1.70;
-		newvalues.ismetric=obj.ismetric || false;
-		this.setValues(newvalues);
-	    }).catch( (e) => { webutil.createAlert(e,true); });
+	bisgenericio.read(fileobject).then( (f) => {
+	    
+	    let obj = { };
+	    try { 
+		obj= JSON.parse(f.data);
+	    }  catch(e) {
+		webutil.createAlert(`Failed to parse input file ${f.filename}`,true);
+	    }
+            
+	    let newvalues = {};
+	    newvalues.weight=obj.weight || 70.0;
+	    newvalues.height=obj.height || 1.70;
+	    newvalues.ismetric=obj.ismetric || false;
+	    this.setValues(newvalues);
+	}).catch( (e) => {
+            webutil.createAlert(e,true);
+        });
     
     }
 
@@ -163,16 +164,15 @@ class CustomFormElement extends  HTMLElement {
      * This function saves the state
      * to a text file
      */
-    save() {
+    save(fileobject) {
 
+        // if in the browser (as opposed to electron)
+        //   fileobject is null and must be set to a default value first
+        fileobject=bisgenericio.getFixedSaveFileName(fileobject,"bmi.json");
+        
 	let values=this.getValues();
 	let out=JSON.stringify(values);
-    
-	bisgenericio.write({
-	    filename : "test.json",
-	    title : 'File to save state in',
-	    filters : [ { name: 'JSON formatted  file', extensions: [ 'json']}],
-	},out);
+    	bisgenericio.write(fileobject,out);
     }
 }
 
