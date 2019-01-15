@@ -25,4 +25,9 @@ complexity. Here is the list
 * [Step 3](./step3) -- a simple web-based application showing how to use an
   old-fashioned module.
 * [Step 4](./step4) -- a redo of step 3 using proper modules and the webpack ''bundler''.
-* [Step 5](./step5) -- a redo of step 4 but now as a desktop application using Electron.
+* [Step 5](./step5) -- a redo of step 4 but now as a desktop application using
+  Electron.
+* [Step 6](./step6) -- moving step 5 to web-components (custom web elements)
+* [Step 7](./step7) -- a redo of step 6 using
+  [BioImage Suite Web code](https://github.com/bioimagesuiteweb/bisweb) to
+  create menus, file dialogs and file I/O
