@@ -21,7 +21,7 @@ const path=require('path');
 
 const basedir=path.resolve(path.join(__dirname,'..'));
 const indir=path.resolve(path.join(basedir,'web'));
-const outdir=path.resolve(path.join(basedir,'build'));
+const outdir=path.resolve(path.join(basedir,path.join('build','web')));
 
 console.log('++++');
 console.log('++++ Webpack basedir =',basedir);

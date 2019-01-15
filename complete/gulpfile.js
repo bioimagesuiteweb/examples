@@ -86,7 +86,7 @@ const executeCommand=function(command,dir) {
 
 // Options 
 const options = {
-    outdir : "./build",
+    outdir : "./build/web",
     name : 'index',
     alljs : [ 'webcomponents-lite.js', 'jquery.min.js', 'three.min.js', 'bootstrap.min.js', 'libbiswasm_nongpl_wasm.js', 'bislib.js', 'index_bundle.js'  ],
     allcss : [ 'bootstrap_dark_edited.css', 'index.css' ],
@@ -95,7 +95,7 @@ const options = {
 }
 
 gulp.task('clean', (done) => {
-    rimraf.sync(options.outdir+'/*');
+    rimraf.sync(options.outdir+'/web/*');
     done();
 });
 
@@ -156,3 +156,7 @@ gulp.task('webpack', (done) => {
     
 });
 
+
+
+
+gulp.task('build', gulp.parallel('commonfiles','mainhtml','webpack'));
