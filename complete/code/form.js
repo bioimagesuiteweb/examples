@@ -61,7 +61,7 @@ class CustomFormElement extends  HTMLElement {
 	// Create GUI
 	this.core_element=$(formtext);
 	this.appendChild(this.core_element[0]); // mapping for Jquery to regular web element
-        this.core_element.css({ 'width' : '400px'});
+        this.core_element.css({ 'width' : '80vw'});
 
 	this.weight_input=this.core_element.find(`[name='weight']`);
 	this.height_input=this.core_element.find(`[name='height']`);
