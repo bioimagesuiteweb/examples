@@ -82,8 +82,8 @@ const executeCommand=function(command,dir) {
     });
 };
 
-// --------------------------------------------------------------------------------------------------
 
+// --------------------------------------------------------------------------------------------------
 // Options 
 const options = {
     outdir : "./build/web",
@@ -101,11 +101,23 @@ const options = {
     },
 };
 
+
+// --------------------------------------------------------------------------------------------------
+// Tasks
+//
+
+
+// - - - - - - - - - - - - - - - - - - - -
+// Clean all files in build/web
+// - - - - - - - - - - - - - - - - - - - -
 gulp.task('clean', (done) => {
     rimraf.sync(options.outdir+'/web/*');
     done();
 });
 
+// - - - - - - - - - - - - - - - - - - - -
+// Copy static assets and external js files to build/web
+// - - - - - - - - - - - - - - - - - - - -
 gulp.task('commonfiles', (done) => {
     
     es.concat(
@@ -130,7 +142,9 @@ gulp.task('commonfiles', (done) => {
     });
 });
 
-
+// - - - - - - - - - - - - - - - - - - - -
+//  Create build/web/index.html by replacing stuff in web/index.html
+// - - - - - - - - - - - - - - - - - - - -
 gulp.task('mainhtml', (done) => {
 
     const htmlreplace = require('gulp-html-replace');
@@ -149,11 +163,17 @@ gulp.task('mainhtml', (done) => {
         });
 });
 
+// - - - - - - - - - - - - - - - - - - - -
+//  Set a flag to true that in turn (see below) makes webpack run in 'watch' mode
+// - - - - - - - - - - - - - - - - - - - -
 gulp.task('webackwatch', (done) => {
     options.webpackwatch=true;
     done();
 });
 
+// - - - - - - - - - - - - - - - - - - - -
+// Run webpack as external process to compile web/index.js to build/web/index_bundle.js
+// - - - - - - - - - - - - - - - - - - - -
 gulp.task('webpack', (done) => {
 
 
@@ -169,6 +189,9 @@ gulp.task('webpack', (done) => {
     
 });
 
+// - - - - - - - - - - - - - - - - - - - -
+// Start a light web server so we can test
+// - - - - - - - - - - - - - - - - - - - -
 gulp.task('webserver', (done) => {
     const webserver = require('gulp-webserver');
     console.log(colors.red(getTime()+' server options=',JSON.stringify(options.webserver)));
@@ -176,6 +199,9 @@ gulp.task('webserver', (done) => {
 });
 
 
+// - - - - - - - - - - - - - - - - - - - - - - - 
+// Run eslint to examine the js code for errors
+// - - - - - - - - - - - - - - - - - - - - - - -
 gulp.task('eslint',  () => { 
     // ESLint ignores files with "node_modules" paths.
     // So, it's best to have gulp ignore the directory as well.
@@ -211,14 +237,33 @@ gulp.task('eslint',  () => {
 });
 
 
+// - - - - - - - - - - - - - - - - - - - - - - -
+// Watch JS code for changes and invoke ESLint
+// - - - - - - - - - - - - - - - - - - - - - - -
 gulp.task('watch', () => {
     console.log(colors.yellow(getTime()+' Beginning to watch js files',options.lintscripts.join(','),' with eslint'));
     return gulp.watch(options.lintscripts, gulp.series('eslint'));
 });
 
 
-
-
+// - - - - - - - - - - - - - - - - - - - - - - -
+// Build task -- create everything in build/web
+// - - - - - - - - - - - - - - - - - - - - - - - 
 gulp.task('build', gulp.series('clean',gulp.parallel('commonfiles','mainhtml','webpack')));
 
-gulp.task('devel', gulp.series('clean','webackwatch',gulp.parallel('commonfiles','mainhtml','watch','webpack','webserver')));
+
+// - - - - - - - - - - - - - - - - - - - - - - -
+// Devel task
+// Build + webpack in watch mode plus
+//   realtime eslint linting of js files plus
+//     running webserver
+// - - - - - - - - - - - - - - - - - - - - - - -
+gulp.task('devel', gulp.series('webackwatch',gulp.parallel('build','watch','webserver')));
+
+
+// -------------------------------------------
+// Default is devel
+// -------------------------------------------
+
+gulp.task('default',gulp.series('devel'));
+          
