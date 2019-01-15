@@ -1,12 +1,14 @@
 # Simple Web Application
 
-## To run
+## Install Prerequisites
 
 First install a local web server using
 
 	npm install -d
     
-## Then run this
+## To run    
+
+To run this
 
     gulp webserver
     
