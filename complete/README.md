@@ -46,9 +46,29 @@ machine __omit `sudo`__)
 * `gulp package` -- will create an electron packaged application in
   `build/dist`
   
+* `gulp zip` -- will create a zip file for upload to a web server
+
+  
 * `gulp eslint` -- will run the ESLint checker on all the .js files
 
 and many many more.
 
   
   
+7. This application is a progressive web application. This install as a
+    desktop application from the web page just fine under Chrome on
+    Windows/Android. To install on a Mac you will need to use Chrome. First
+    enable the flag:
+   
+        chrome://flags#enable-desktop-pwas
+        
+Then open http://localhost:8080/build/web/index.html as usual.
+
+If you are at Yale you may open the application by going to 
+
+    https://git.yale.edu/pages/xenios/biswebtest/
+
+See if you have an option under the Help menu to install this as a PWA (as
+shown below)
+
+![./docs/pwa.jpg](Install as PWA)
