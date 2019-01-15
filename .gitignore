@@ -1,6 +1,5 @@
 **/node_modules/*
 **/build/*
-orig
 **/#*
 **/*~
 **/*.log
@@ -17,5 +16,4 @@ orig
 data/*
 **/package-lock.json
 *.pem
-**/dcm2nii*
-**/screenshots
+
