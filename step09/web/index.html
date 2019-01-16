@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <title>Step 09: BMI Computation Tool</title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="theme-color" content="rgb(28,45,64)">
+    <link rel="icon" href="images/logo.ico">
+    <!-- begin browserify/gulp modifications -->
+
+
+    <!-- external css files -->
+    <!-- build:css -->
+    <link rel="stylesheet" type="text/css" href="../lib/css/bootstrap_dark_edited.css">
+    <link rel="stylesheet" type="text/css" href="./index.css">
+    <!-- endbuild -->
+
+    <!-- all javascript files -->
+    <!-- build:js -->
+    <script src="../build/web/webcomponents-lite.js"></script>
+    <script src="../build/web/jquery.min.js"></script>
+    <script src="../build/web/three.min.js"></script>
+    <script src="../build/web/bootstrap.min.js"></script>
+    <script src="../build/web/libbiswasm_nongpl_wasm.js"></script>
+    <script src="../build/web/bislib.js"></script>
+    <script src="../build/web/index_bundle.js"></script>
+    <!-- endbuild -->
+    <!-- end webpack/gulp modifications -->
+
+    <!-- build:manifest-->
+    <!-- endbuild-->
+
+
+<body>
+  
+  <custom-menubar   id="menubar"></custom-menubar>
+  <custom-form      id="mainwidget"></custom-form>
+  <custom-mainapplication menubar="#menubar" form="#mainwidget"></custom-mainapplication>
+  <custom-statusbar></custom-statusbar> 
+
+  <noscript>Your browser does not support JavaScript!</noscript>
+  
+</body>
+</html>
+
