@@ -1,7 +1,6 @@
 /**
  * Utilities for Progressive web applications
  */
-const bioimagesuiteweb=require('bislib');
 const webutil=bioimagesuiteweb.webutil;
 
 
@@ -18,11 +17,6 @@ const internal = {
 
 let registerServiceWorker= function() {
 
-    // No Service Worker in Electron
-    if (bioimagesuiteweb.getenvironment === 'electron') {
-        return;
-    }
-    
     // Register the service worker
     if (!navigator.serviceWorker.controller) {
         //Register the ServiceWorker
@@ -40,11 +34,6 @@ let registerServiceWorker= function() {
 // See https://developers.google.com/web/fundamentals/app-install-banners/
 let addInstallButton= function(helpmenu) {
 
-    // No PWA in Electron
-    if (bioimagesuiteweb.getenvironment === 'electron') {
-        return;
-    }
-    
     // Add a button to install the application
     window.addEventListener('beforeinstallprompt', (evt) => {
             

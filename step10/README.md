@@ -5,7 +5,32 @@ the [complete example](../complete). In this file we discuss the additional
 info in
 [complete/gulpfile.js)(../complete/gulpfile.js) that are needed to create packaged electron applications.
 
-### Differences Between Electron Apps and Web Apps
+#### Code Changes
+
+BioImage Suite Web handles the context differences between Web and Electron in terms of File I/O and File Dialogs (which are the most critical differences). The only other changes to the code is to put some checks in [code/pwautils.js](../complete/code/pwautils.js)
+to stop things from running if we are in Electron.
+
+The changes are minor. At the top of the file we require bioimagesuiteweb
+(this is the same as before):
+
+     const bioimagesuiteweb=require('bislib');
+
+Next in both the functions `registerServiceWorker` and `addInstallButton` we
+check if we are in electron using the `getenvironment` function in
+bioimagesuiteweb. If yes, we do nothing and just return. Here are the first
+few lines from the function `registerServiceWorker` in code/pwautils.js
+
+     let registerServiceWorker= function() {
+
+        // No Service Worker in Electron
+        if (bioimagesuiteweb.getenvironment === 'electron') 
+        return;
+    
+        ...
+        
+
+
+### Differences Between Packaging Electron Apps and Web Apps
 
 A key difference is that Electron Apps (when packaged) are:
 
@@ -24,6 +49,11 @@ To package an electron app we follow the following five steps:
 4. Remove any files not needed for electron (AppImages for one)
 5. Run `electron-packager` to create the Electron application as a directory.
 6. Zip this output to create a final zip file.
+
+
+
+
+
 
 
 We discuss steps 2-5 below:
