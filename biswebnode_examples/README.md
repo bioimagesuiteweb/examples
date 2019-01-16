@@ -4,6 +4,8 @@ This directory contains examples of how to use `biswebnode` as a library.
 
 * `readnifti.js` -- read and manipulate a nifti-1 formatted image.
 * `smoothimage.js` -- smooth an image using the smoothImage module 
+* `readfile.js` and `readfile2.js` -- simplified file I/O using the
+  `genericio` module of BioimageSuite Web.
 
 __Note:__ For a complete list of modules type
 
