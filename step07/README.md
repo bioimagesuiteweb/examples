@@ -2,25 +2,31 @@
 
 In this example, we will introduce the use of BioImage Suite web as a library.
 
-BioImage Suite Web at its base is a library consisting of two files (versions
-of which are placed in the `lib/js` directory). To use BioImage Suite Web
-code, these must be included in your `.html` file together with the three core
-underlying libraries (jquery,bootstrap and three.js).
+BioImage Suite Web at its base is a library. It can now be installed via npm
+(the package name is 'biswebbrowser'. To use BioImage Suite Web code, its
+files must be included in your `.html` file together with the three core
+underlying libraries (jquery,bootstrap and optionally three.js).
 
 Hence the top of `web/index.html` takes the form:
 
-    <script src="../lib/js/webcomponents-lite.js"></script>
-    <script src="../node_modules/jquery/dist/jquery.min.js"></script>
-    <script src="../node_modules//bootstrap/dist/js/bootstrap.min.js"></script>
-    <script src="../node_modules/three/build/three.min.js"></script>
-    <script src="../lib/js/libbiswasm_nongpl_wasm.js"></script>
-    <script src="../lib/js/bislib.js"></script>
-    <script src="../build/index_bundle.js"></script>
+a. Prerequisites
 
+    <script src="../node_modules/biswebbrowser/dist/webcomponents-lite.js"></script>
+    <script src="../node_modules/biswebbrowser/dist/jquery.min.js"></script>
+    <script src="../node_modules/biswebbrowser/dist/bootstrap.min.js"></script>
+    
+b. BioImage Suite Web Files
+
+    <script src="../node_modules/biswebbrowser/dist/libbiswasm_nongpl_wasm.js"></script>
+    <script src="../node_modules/biswebbrowser/dist/bislib.js"></script>
+    
+c. Your code file
+
+    <script src="../build/index_bundle.js"></script>
 
 ## Install Dependencies
 
-First install our runtime dependencies (jQuery and Boostrap), webpack and a local web server using:
+First install our runtime dependencies (biswebbrowser which includes jQuery and Boostrap), webpack and a local web server using:
 
 	npm install -d
     
@@ -75,16 +81,12 @@ The code for the custom elements is now in a separate `code` subdirectory.
 BioImage Suite Web is imported by including the following files in the
 document header.
 
-    <script src="../lib/js/libbiswasm_nongpl_wasm.js"></script>
-    <script src="../lib/js/bislib.js"></script>
+    <script src="../node_modules/biswebbrowser/dist/libbiswasm_nongpl_wasm.js"></script>
+    <script src="../node_modules/biswebbrowser/dist/bislib.js"></script>
 
 One must also include (prior to these), jQuery, Bootstrap (3.4) and THREE.js.
 
-To access the code we can use the require statement e.g.
-
-    const bioimagesuiteweb=require('bislib');
-    
-or simply access the same object in the global `window` variable e.g.
+To access the code we can simply type
 
     const bioimagesuiteweb=window.bioimagesuiteweb;
     

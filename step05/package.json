@@ -1,4 +1,5 @@
 {
+    "private" : true,
     "name": "beng406example4",
     "version": "1.0.0",
     "description": "Example 4 for BENG 406b",
