@@ -1,6 +1,7 @@
 /**
  * Utilities for Progressive web applications
  */
+const bioimagesuiteweb=window.bioimagesuiteweb;
 const webutil=bioimagesuiteweb.webutil;
 
 

@@ -26,7 +26,8 @@ single example. These icons can be found in [web/AppImages](web/AppImages).
 
 ## Install Dependencies
 
-First install our runtime dependencies (jQuery and Boostrap), webpack and a local web server using:
+First install our runtime dependencies (biswebbrowser which includes jQuery,
+boostrap, three.js and webcomponents), webpack and a local web server using:
 
 	npm install -d
     

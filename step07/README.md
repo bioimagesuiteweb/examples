@@ -26,7 +26,8 @@ c. Your code file
 
 ## Install Dependencies
 
-First install our runtime dependencies (biswebbrowser which includes jQuery and Boostrap), webpack and a local web server using:
+First install our runtime dependencies (biswebbrowser which includes jQuery,
+boostrap, three.js and webcomponents), webpack and a local web server using:
 
 	npm install -d
     

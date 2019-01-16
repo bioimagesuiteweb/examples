@@ -11,7 +11,8 @@ directory and ultimately a zip file for upload to a server.
 
 ## Install Dependencies
 
-First install our runtime dependencies (jQuery and Boostrap), webpack and a local web server using:
+First install our runtime dependencies (biswebbrowser which includes jQuery,
+boostrap, three.js and webcomponents), webpack and a local web server using:
 
 	npm install -d
     
