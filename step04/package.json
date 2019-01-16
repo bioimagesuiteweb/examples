@@ -4,6 +4,9 @@
     "description": "Example 4 for BENG 406b",
     "author": "Xenios Papademetris",
     "license": "Apache-2.0",
+    "scripts": {
+        "test": "mocha test"
+    },
     "dependencies": {
         "bootstrap": "3.4.0",
         "jquery": "3.3.1"

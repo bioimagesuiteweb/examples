@@ -24,14 +24,15 @@ This repository will eventually contain examples of increasing
 complexity. Here is the list
 
 * [Complete](./complete) -- the full example with desktop and electron and pwa
-  versions.
+  versions. This is the boiler-plate template  for BENG 406b projects.
   
 * [Step 1](./step01) -- a simple commandline (node.js)  `helloworld` application.
 * [Step 2](./step02) -- a slightly more complex node.js application showing how
   to use a module.
 * [Step 3](./step03) -- a simple web-based application showing how to use an
   old-fashioned module.
-* [Step 4](./step04) -- a redo of step 3 using proper modules and the webpack ''bundler''.
+* [Step 4](./step04) -- a redo of step 3 using proper modules and the webpack
+  ''bundler''. We also introduce regression testing using `mocha`.
 * [Step 5](./step05) -- a redo of step 4 but now as a desktop application using
   Electron.
 * [Step 6](./step06) -- moving step 5 to web-components (custom web elements)
