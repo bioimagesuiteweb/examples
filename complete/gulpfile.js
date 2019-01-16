@@ -146,24 +146,22 @@ gulp.task('clean', (done) => {
 gulp.task('commonfiles', (done) => {
     
     es.concat(
-        gulp.src([ 'node_modules/bootstrap/dist/css/*']).pipe(gulp.dest(options.outdir+'/css/')),
-        gulp.src([ 'node_modules/bootstrap/dist/fonts/*']).pipe(gulp.dest(options.outdir+'/fonts/')),
         gulp.src([ 'web/serviceworker.js']).pipe(gulp.dest(options.outdir)),
         gulp.src([ 'web/images/**/*']).pipe(gulp.dest(options.outdir+'/images/')),
-        gulp.src([ 'lib/fonts/*']).pipe(gulp.dest(options.outdir+'/fonts/')),
-        gulp.src([ 'lib/js/*.js']).pipe(gulp.dest(options.outdir+'/fonts/')),
         gulp.src([ 'web/index.css']).pipe(gulp.dest(options.outdir)),
         gulp.src([ 'web/manifest.json']).pipe(gulp.dest(options.outdir)),
         gulp.src([ 'web/AppImages/**/*']).pipe(gulp.dest(options.outdir+'/AppImages')),
         gulp.src('./web/electronpreload.js').pipe(gulp.dest(options.outdir)),
         gulp.src('./web/electronmain.js').pipe(gulp.dest(options.outdir)),
-        gulp.src('./lib/css/bootstrap_dark_edited.css').pipe(gulp.dest(options.outdir)),
-        gulp.src('./lib/js/webcomponents-lite.js').pipe(gulp.dest(options.outdir)),
-        gulp.src('./lib/js/bislib.js').pipe(gulp.dest(options.outdir)),
-        gulp.src('./lib/js/libbiswasm_nongpl_wasm.js').pipe(gulp.dest(options.outdir)),
-        gulp.src('./node_modules/jquery/dist/jquery.min.js').pipe(gulp.dest(options.outdir)),
-        gulp.src('./node_modules/bootstrap/dist/js/bootstrap.min.js').pipe(gulp.dest(options.outdir)),
-        gulp.src('./node_modules/three/build/three.min.js').pipe(gulp.dest(options.outdir)),
+        gulp.src([ 'node_modules/biswebbrowser/dist/css/*']).pipe(gulp.dest(options.outdir+'/css/')),
+        gulp.src([ 'node_modules/biswebbrowser/dist/fonts/*']).pipe(gulp.dest(options.outdir+'/fonts/')),
+        gulp.src('./node_modules/biswebbrowser/dist/bootstrap_dark_edited.css').pipe(gulp.dest(options.outdir)),
+        gulp.src('./node_modules/biswebbrowser/dist/webcomponents-lite.js').pipe(gulp.dest(options.outdir)),
+        gulp.src('./node_modules/biswebbrowser/dist/bislib.js').pipe(gulp.dest(options.outdir)),
+        gulp.src('./node_modules/biswebbrowser/dist/libbiswasm_nongpl_wasm.js').pipe(gulp.dest(options.outdir)),
+        gulp.src('./node_modules/biswebbrowser/dist/jquery.min.js').pipe(gulp.dest(options.outdir)),
+        gulp.src('./node_modules/biswebbrowser/dist/bootstrap.min.js').pipe(gulp.dest(options.outdir)),
+        gulp.src('./node_modules/biswebbrowser/dist/three.min.js').pipe(gulp.dest(options.outdir)),
     ).on('end', () => {
 
         let outinfo = { };

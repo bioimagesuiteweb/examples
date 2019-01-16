@@ -1,7 +1,7 @@
 /**
  * Utilities for Progressive web applications
  */
-const bioimagesuiteweb=require('bislib');
+const bioimagesuiteweb=window.bioimagesuiteweb;
 const webutil=bioimagesuiteweb.webutil;
 
 
