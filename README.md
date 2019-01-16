@@ -52,7 +52,8 @@ to these examples.
 
 ## Examples Of Using BioImage Suite Web as a library
 
-### Examples in this repository
+The following two directories illustrate the use of the npm packages
+`biswebnode` and `biswebbrowser`.
 
 * [biswebnode](./biswebnode_examples) -- examples of using the node.js package
   `biswebnode` as a library.
