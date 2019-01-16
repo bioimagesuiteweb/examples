@@ -21,7 +21,7 @@ const path=require('path');
 
 const basedir=path.resolve(path.join(__dirname,'..'));
 const indir=path.resolve(path.join(basedir,'web'));
-const outdir=path.resolve(path.join(basedir,path.join('build','web')));
+const outdir=path.resolve(path.join(basedir,'build'));
 
 console.log('++++');
 console.log('++++ Webpack basedir =',basedir);
@@ -34,7 +34,7 @@ module.exports = {
         extensions: [ '.js'],
         modules : [ path.resolve(basedir,'node_modules'),
                     path.resolve(basedir,'lib/js'),
-                    path.resolve(basedir,'code'),
+                    path.resolve(basedir,'code')
                   ],
     },
     mode : 'development',

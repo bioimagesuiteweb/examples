@@ -20,7 +20,7 @@ First install our runtime dependencies (jQuery and Boostrap), webpack and a loca
 
 	npm install -d
     
-We also have a small shimming module `webcomponents-lite.js` in the externals
+We also have a small shimming module `webcomponents-lite.js` in the `lib/js`
 directory for those browsers that do not natively support custom web elements.
     
 ## To Run:
@@ -97,3 +97,4 @@ Finally index.js is simply the single line:
     
 This is a prompt to webpack to include this in the bundle. If we had more
 custom elements we would have added them to this file in a similar fashion.
+

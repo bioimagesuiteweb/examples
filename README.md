@@ -17,10 +17,11 @@ second book called [Exploring ES6](http://exploringjs.com/es6/index.html) by
 the same author covers some of the changes. I strongly recommend reading
 Chapters 1-4 for a clear understanding of all that is new here.
 
-Finally, see this
+Finally, we recommend this
 [document from the BioImageSuite Web repository](https://github.com/bioimagesuiteweb/bisweb/blob/master/docs/AspectsOfJS.md)
-which highlights some aspects of the language that people often find
-confusing.
+which highlights some aspects of the language that are particularly relevant
+to these examples.
+
 
 ## Before you begin
 
