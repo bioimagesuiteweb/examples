@@ -40,13 +40,12 @@ to these examples.
         sudo npm install -g electron-packager
 ---
 
-## Examples
-
-This repository will eventually contain examples of increasing
-complexity. Here is the list
+## A Complete Simple Application Examples 
 
 * [Complete](./complete) -- the full example with desktop and electron and pwa
   versions. This is the boiler-plate template  for BENG 406b projects.
+  
+#### Building up to the __Complete example__ in 10 steps.
   
 * [Step 1](./step01) -- a simple commandline (node.js)  `helloworld` application.
 * [Step 2](./step02) -- a slightly more complex node.js application showing how
@@ -61,10 +60,10 @@ complexity. Here is the list
 * [Step 6](./step06) -- moving step 5 to web-components (custom web elements)
 * [Step 7](./step07) -- Using
   [BioImage Suite Web code](https://github.com/bioimagesuiteweb/bisweb) to create menus, file dialogs and file I/O
-* [ Step 8 ](./step08) -- Progressive web applications.
-* [ Step 9 ](./step09) -- packaging web applications for deployment to a web server.
-* [ Step 10](./step10) -- packaging electron desktop applications for
-  distribution. __to come__
+* [Step 8](./step08) -- Progressive web applications.
+* [Step 9](./step09) -- packaging web applications for deployment to a web server.
+* [Step 10](./step10) -- extra code for packaging electron-based desktop applications.
+  distribution. 
 
 
 ---

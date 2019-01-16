@@ -303,8 +303,6 @@ gulp.task('electronpackage', (done) => {
     }
 
     const version=options.electronversion;
-
-    let errorf=function() { };
     console.log(colors.cyan(getTime()+' Using electron '+version+' for '+platform));
 
 
@@ -316,7 +314,6 @@ gulp.task('electronpackage', (done) => {
     }
 
     let zipindir=appinfo.name+'-'+name+'-x64';
-    
     let appdir=path.join(distdir,zipindir);
     console.log(colors.red(getTime()+' removing '+appdir));
     rimraf.sync(appdir);
@@ -331,19 +328,12 @@ gulp.task('electronpackage', (done) => {
 
     executeCommand('npm install',indir).then( () => {
         // Modules in node_modules have been updated
-
-        let zname=path.resolve(path.join(indir,path.join('..',`dist/${appinfo.name}_${appinfo.version}_${name}.zip`)));
-
         // appinfo is package.json!
-        let basefile=distdir+"/"+appinfo.name+'_'+appinfo.version;
-        let zipfile=basefile+suffix;
-        
         let eversion = options.electronversion;
         let cmdline='electron-packager '+indir+' '+appinfo.name+' --arch=x64 --electron-version '+eversion+' --out '+path.resolve(distdir)+' --overwrite --app-version '+appinfo.version;
         
-        let ifile=path.resolve(__dirname,'web/images/logo.ico');
         if (inwin32)
-            cmdline+=` --platform=win32 --icon ${ifile}`;
+            cmdline+=` --platform=win32 --icon `+path.resolve(__dirname,'web/images/logo.ico');
         else if (platform==='linux')
             cmdline+=' --platform=linux';
         else
@@ -351,6 +341,7 @@ gulp.task('electronpackage', (done) => {
 
         executeCommand(cmdline,indir).then( () => {
 
+            let zname=path.resolve(path.join(indir,path.join('..',`dist/${appinfo.name}_${appinfo.version}_${name}.zip`)));
             let basez=path.basename(zname);
             console.log(getTime()+' creating zip file: outfile = ',zname);
             console.log(getTime()+' input app directory=',appdir);
