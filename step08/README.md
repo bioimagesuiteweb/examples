@@ -1,4 +1,4 @@
-## Leveraging BioImage Suite Web as a library
+## Creating a Progressive Web Application.
 
 In this example, we will introduce the Progressive Web Applications (PWAs).
 
