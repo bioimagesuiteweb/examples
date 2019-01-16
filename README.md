@@ -40,13 +40,13 @@ to these examples.
         sudo npm install -g electron-packager
 ---
 
-## A Complete Simple Application Examples 
+## A Complete Simple Application Example in 10 Steps
 
-* [Complete](./complete) -- the full example with desktop and electron and pwa
-  versions. This is the boiler-plate template  for BENG 406b projects.
-  
-#### Building up to the __Complete example__ in 10 steps.
-  
+This set of examples shows how to create both the code and, more critically,
+the development/build environment for a multi-context (web, electron, PWA)
+applications. The application itself is trivial, the focus here is on the
+software engineering infrastructure.
+
 * [Step 1](./step01) -- a simple commandline (node.js)  `helloworld` application.
 * [Step 2](./step02) -- a slightly more complex node.js application showing how
   to use a module.
@@ -64,8 +64,9 @@ to these examples.
 * [Step 9](./step09) -- packaging web applications for deployment to a web server.
 * [Step 10](./step10) -- extra code for packaging electron-based desktop applications.
   distribution. 
-
-
+* [Complete](./complete) -- the full example with desktop and electron and pwa
+  versions. This is the boiler-plate template  for BENG 406b projects.
+  
 ---
 ### Examples from the BioImage Suite Web Repository
 
