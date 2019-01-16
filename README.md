@@ -1,8 +1,10 @@
-# Examples
+# Examples Repository
 
 This is example code for BioImage Suite Web. It introduces certain JavaScript
 and Software Engineering Concepts. It was developed in part also for the needs
 of the Yale Course ``Medical Software Design`` (BENG 406b, Spring 2019). 
+
+---
 
 ## Learning JavaScript
 
@@ -15,13 +17,13 @@ JavaScript QuickStart" may be all that you need to read to get
 started. JavaScript v6 (ES2015) is now fast becoming the new standard. A
 second book called [Exploring ES6](http://exploringjs.com/es6/index.html) by
 the same author covers some of the changes. I strongly recommend reading
-Chapters 1-4 for a clear understanding of all that is new here.
-
-Finally, we recommend this
+Chapters 1-4 for a clear understanding of all that is new here. Finally, we
+recommend this
 [document from the BioImageSuite Web repository](https://github.com/bioimagesuiteweb/bisweb/blob/master/docs/AspectsOfJS.md)
 which highlights some aspects of the language that are particularly relevant
 to these examples.
 
+---
 
 ## Before you begin
 
@@ -36,8 +38,9 @@ to these examples.
         sudo npm install -g gulp mocha jsdoc eslint modclean webpack webpack-cli uglify-es rimraf 
         sudo npm install -g electron --unsafe-perm=true --allow-root
         sudo npm install -g electron-packager
+---
 
-### Examples
+## Examples
 
 This repository will eventually contain examples of increasing
 complexity. Here is the list
@@ -59,11 +62,30 @@ complexity. Here is the list
 * [Step 7](./step07) -- Using
   [BioImage Suite Web code](https://github.com/bioimagesuiteweb/bisweb) to create menus, file dialogs and file I/O
 
----
-
 __To come__
 
 * [ Step 8 ](./step08) -- Progressive web applications
 * [ Step 9 ](./step09) -- packaging web applications for deployment
 * [ Step 10](./step10) -- packaging electron desktop applications for distribution.
+
+
+---
+### Examples from the BioImage Suite Web Repository
+
+There are also three more advanced, related, examples in the BioImage Suite
+Web repository, that illustrate the use of BioImage Suite Web as a library as
+opposed to an application.
+
+i.  [ Image Resampling Example](https://github.com/bioimagesuiteweb/bisweb/blob/master/web/exportexample.html)
+  -- shows how to use BioImage Suite web image processing modules to resample
+  a medical image. The JS code is [at this location](https://github.com/bioimagesuiteweb/bisweb/blob/master/web/exportexample.js).
+
+ii. [ TensorFlow.js Example](https://github.com/bioimagesuiteweb/bisweb/blob/master/web/tfjsexample.html)
+-- shows how to apply a pretrained tensorflow.js model to a medical image using
+functionality in BioImage Suite Web. The JS code is [at this location](https://github.com/bioimagesuiteweb/bisweb/blob/master/web/tfjsexample.js).
+    
+iii. [Viewer Example](https://github.com/bioimagesuiteweb/bisweb/blob/master/web/viewerexample.html)
+  -- shows how to create a simple image viewer using more advanced BioImage
+  Suite Web components. There is no custom JS code here, this example simply
+  connects predefined custom web elements.
 

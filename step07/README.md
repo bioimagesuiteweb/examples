@@ -318,3 +318,20 @@ is used as part of the launch process by setting the flag `preload` (see
 `web/electronmain.js`).
 
 
+### More Examples of using BioImage Suite Web Functionality
+
+There are also three examples in the BioImage Suite Web repository
+
+*  [ Image Resampling Example](https://github.com/bioimagesuiteweb/bisweb/blob/master/web/exportexample.html)
+  -- shows how to use BioImage Suite web image processing modules to resample
+  a medical image. The JS code is [at this location](https://github.com/bioimagesuiteweb/bisweb/blob/master/web/exportexample.js).
+
+*
+[ TensorFlow.js Example](https://github.com/bioimagesuiteweb/bisweb/blob/master/web/tfjsexample.html)
+-- shows how to apply a pretrained tensorflow.js model to a medical image using
+functionality in BioImage Suite Web. The JS code is [at this location](https://github.com/bioimagesuiteweb/bisweb/blob/master/web/tfjsexample.js).
+  
+* [Viewer Example](https://github.com/bioimagesuiteweb/bisweb/blob/master/web/viewerexample.html)
+  -- shows how to create a simple image viewer using more advanced BioImage
+  Suite Web components. There is no custom JS code here, this example simply
+  connects predefined custom web elements.
