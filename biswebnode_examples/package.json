@@ -1,0 +1,11 @@
+{
+    "private": true,
+    "name": "biswebnodeexamples",
+    "version": "1.0.0",
+    "description": "Command Line Examples for BioImage Suite Web",
+    "author": "Xenios Papademetris",
+    "license": "Apache-2.0",
+    "dependencies": {
+        "biswebnode": "^1.1.0-a4"
+    }
+}

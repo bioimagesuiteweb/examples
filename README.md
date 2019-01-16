@@ -4,6 +4,17 @@ This is example code for BioImage Suite Web. It introduces certain JavaScript
 and Software Engineering Concepts. It was developed in part also for the needs
 of the Yale Course ``Medical Software Design`` (BENG 406b, Spring 2019). 
 
+To use (parts of) BioImage Suite Web as a library you can install it via npm
+
+For node.js
+
+    npm install biswebnode
+    
+For browser/electron
+
+    npm install biswebbrowser
+
+
 ---
 
 ## Learning JavaScript
