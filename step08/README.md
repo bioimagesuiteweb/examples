@@ -11,16 +11,18 @@ We also recommend the [PWA Builder Tool](https://www.pwabuilder.com/) from Micro
 
 At the core to create an installable PWA, we need four things:
 
-1. A service worker (see `web/serviceworker.js`)
-2. A manifest file (see `web/manifest.json') that is linked to from the main
+1. A service worker (see [web/serviceworker.js](web/serviceworker.js)).
+2. A manifest file (see [web/manifest.json](web/manifest.json)) that is linked to from the main
    web page (`web/index.html`)
 3. Code to register the service worker from the main application (see
-   `code/pwautils.js) called from (`code/mainapplications.js`)
-4. Code to trap and expose the `install` event -- again see `code/pwautils.js`
+   [code/pwautils.js](code/pwautils.js)) called from
+   [code/mainapplications.js](code/mainapplication.js).
+4. Code to trap and expose the `install` event -- again see
+   [code/pwautils.js](code/pwautils.js) called again from  [code/mainapplications.js](code/mainapplication.js).
 
 In addition the manifest file requires icons of our application at different
 sizes. We used the tool that is part of PWA Builder to create these from a
-single example. These icons can be found in `web/AppImages`
+single example. These icons can be found in [web/AppImages](web/AppImages).
 
 ## Install Dependencies
 
@@ -67,7 +69,7 @@ Then open http://localhost:8080/web/index.html as usual.
 See if you have an option under the Help menu to install this as a PWA (as
 shown below)
 
-![Install as PWA](./complete/docs/pwa.jpg)
+![Install as PWA](../complete/docs/pwa.jpg)
 
 
 
