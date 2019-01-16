@@ -48,7 +48,7 @@ Then type:
     cd node_modules/biswebnode/test
     mocha test_module.js --last 10
     
-This will run the first 10 tests. Ommit `--last 10` to run all the tests. The
+This will run the first 10 tests. Omit `--last 10` to run all the tests. The
 testdata is downloaded `on-the-fly` from github.
 
 
