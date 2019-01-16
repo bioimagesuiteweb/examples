@@ -16,9 +16,9 @@ At the core to create an installable PWA, we need four things:
    web page (`web/index.html`)
 3. Code to register the service worker from the main application (see
    [code/pwautils.js](code/pwautils.js)) called from
-   [code/mainapplications.js](code/mainapplication.js).
+   [code/main_applications.js](code/main_application.js).
 4. Code to trap and expose the `install` event -- again see
-   [code/pwautils.js](code/pwautils.js) called again from  [code/mainapplications.js](code/mainapplication.js).
+   [code/pwautils.js](code/pwautils.js) called again from  [code/main_applications.js](code/main_application.js).
 
 In addition the manifest file requires icons of our application at different
 sizes. We used the tool that is part of PWA Builder to create these from a
