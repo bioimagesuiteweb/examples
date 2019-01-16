@@ -95,5 +95,10 @@ Course ``Medical Software Design`` (BENG 406b, Spring 2019).
 * [Complete](./complete) -- the full example with desktop and electron and pwa
   versions. This is the boiler-plate template  for BENG 406b projects.
   
+
 ---
 
+BioImage Suite Web (bisweb) is a web-based medical image analysis suite
+primarily geared towards Neuroimaging Analysis. We gratefully acknowledge
+support from the [NIH Brain Initiative](https://www.braininitiative.nih.gov/)
+under grant R24 MH114805 (Papademetris X. and Scheinost D. PIs).
