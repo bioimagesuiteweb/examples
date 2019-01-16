@@ -1,8 +1,7 @@
 # Examples Repository
 
 This is example code for BioImage Suite Web. It introduces certain JavaScript
-and Software Engineering Concepts. It was developed in part also for the needs
-of the Yale Course ``Medical Software Design`` (BENG 406b, Spring 2019). 
+and Software Engineering Concepts. 
 
 To use (parts of) BioImage Suite Web as a library you can install it via npm
 
@@ -51,6 +50,18 @@ to these examples.
         sudo npm install -g electron-packager
 ---
 
+## Examples Of Using BioImage Suite Web as a library
+
+### Examples in this repository
+
+* [biswebnode](./biswebnode_examples) -- examples of using the node.js package
+  `biswebnode` as a library.
+  
+* [biswebbrowser](./biswebbrowser_examples) -- examples of using the
+  browser/electron package `biswebbrowser` as a  library.
+
+---
+
 ## A Complete Simple Application Example in 10 Steps
 
 This set of examples shows how to create both the code and, more critically,
@@ -58,6 +69,10 @@ the development/build environment for a multi-context (web, electron, PWA)
 application. The application itself is trivial -- it simply computes the BMI
 given height and weight information. The focus here is really on the software
 engineering infrastructure aspects of the problem.
+
+This set of examples was developed in part also for the needs of the Yale
+Course ``Medical Software Design`` (BENG 406b, Spring 2019).
+
 
 * [Step 1](./step01) -- a simple commandline (node.js)  `helloworld` application.
 * [Step 2](./step02) -- a slightly more complex node.js application showing how
@@ -80,22 +95,4 @@ engineering infrastructure aspects of the problem.
   versions. This is the boiler-plate template  for BENG 406b projects.
   
 ---
-### Examples from the BioImage Suite Web Repository
-
-There are also three more advanced, related, examples in the BioImage Suite
-Web repository, that illustrate the use of BioImage Suite Web as a library as
-opposed to an application.
-
-i.  [ Image Resampling Example](https://github.com/bioimagesuiteweb/bisweb/blob/master/web/exportexample.html)
-  -- shows how to use BioImage Suite web image processing modules to resample
-  a medical image. The JS code is [at this location](https://github.com/bioimagesuiteweb/bisweb/blob/master/web/exportexample.js).
-
-ii. [ TensorFlow.js Example](https://github.com/bioimagesuiteweb/bisweb/blob/master/web/tfjsexample.html)
--- shows how to apply a pretrained tensorflow.js model to a medical image using
-functionality in BioImage Suite Web. The JS code is [at this location](https://github.com/bioimagesuiteweb/bisweb/blob/master/web/tfjsexample.js).
-    
-iii. [Viewer Example](https://github.com/bioimagesuiteweb/bisweb/blob/master/web/viewerexample.html)
-  -- shows how to create a simple image viewer using more advanced BioImage
-  Suite Web components. There is no custom JS code here, this example simply
-  connects predefined custom web elements.
 
