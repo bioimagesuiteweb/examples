@@ -56,12 +56,14 @@ complexity. Here is the list
 * [Step 5](./step05) -- a redo of step 4 but now as a desktop application using
   Electron.
 * [Step 6](./step06) -- moving step 5 to web-components (custom web elements)
-
-... to come ...
-
-* [Step 7](./step07) -- a redo of step 6 using
-  [BioImage Suite Web code](https://github.com/bioimagesuiteweb/bisweb) to
-  create menus, file dialogs and file I/O
+* [Step 7](./step07) -- Using
+  [BioImage Suite Web code](https://github.com/bioimagesuiteweb/bisweb) to create menus, file dialogs and file I/O
 
 ---
+
+__To come__
+
+* [ Step 8 ](./step08) -- Progressive web applications
+* [ Step 9 ](./step09) -- packaging web applications for deployment
+* [ Step 10](./step10) -- packaging electron desktop applications for distribution.
 
