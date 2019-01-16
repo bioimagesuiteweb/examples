@@ -71,5 +71,3 @@ shown below)
 
 ![Install as PWA](../complete/docs/pwa.jpg)
 
-
-

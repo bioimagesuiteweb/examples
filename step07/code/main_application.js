@@ -7,10 +7,9 @@
 
 
 
-// JQuery
+// jQuery and Bisweb
 const $=window.jQuery;
 const bioimagesuiteweb=window.bioimagesuiteweb;
-
 
 // Code to Create GUI elements
 const webutil=bioimagesuiteweb.webutil;
