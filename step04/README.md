@@ -100,3 +100,77 @@ as follows
 In this way a user can simply type `npm test` (without knowing what type of
 test setup we use) to run the tests.
 
+## Revisiting `gulpfile.js`
+
+Typing `gulp --tasks` yields a more complex arrangement:
+
+    examples/step04>gulp --tasks
+    [19:24:13] Tasks for ~\bisweb\examples\step04\gulpfile.js
+    [19:24:13] ├── webserver
+    [19:24:13] ├── webpack
+    [19:24:13] └─┬ default
+    [19:24:13]   └─┬ <series>
+    [19:24:13]     ├── webpack
+    [19:24:13]     └── webserver
+    
+    
+Now the `default` task is a series-combination of `webpack` and `webserver`. 
+
+The `webpack` task is worth looking at.
+
+    gulp.task('webpack', (done) => {
+
+       let cmd='webpack-cli --config '+path.join('config','webpack.config.js');
+
+        executeCommand(cmd,__dirname).then( () => {
+            done();
+        }).catch( (e) => {
+            process.exit(1);
+        });
+    });
+
+Three things stand out. First we task definition:
+
+    gulp.task('webpack', (done) => {
+       ..
+    });
+
+This syntax implies that our text is a function -- the construct  `(done) => {
+}` is a JavaScript function defined using the `fat arrow` syntax (see 
+[this MDN article](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/Arrow_functions)
+for more details). The argument `done` is the function which we will call when
+our task is __completed__. Tasks in gulp are `asynchronous`.
+
+The second aspect is that we use a function (defined in this gulpfile) to
+execute `webpack` as an external program by calling its command line version
+`webpack-cli`. We simply pass as arguments the configuration file
+'config/webpack.config.js' and webpack does the rest.
+
+Finally, the function `executeCommand` involves asynchronous processing and
+returns a JavaScript `Promise` -- see the [MDN article __Using Promises__](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Using_promises) for more details. We could have re-written this code as:
+
+    let promise=executeCommand(cmd,__dirname);
+    promise.then( () => { done(); });
+    promise.catch( () => { process.exit(1); });
+    
+A promise inherently returns two events ('then' and 'catch') to which we can
+register event handlers. If everything goes well, we end up in `then` and if
+there is a problem in `catch`. See the code for `executeCommand` to see how
+this is created. The first has the form:
+
+    promise.then( somefunction )
+    
+and in our concrete case, we define `somefunction` in-place using the `fat
+arrow` notation as:
+
+    promise.then( () => { done(); });
+
+This means when our asynchronous function is finished, if it is successful, we
+will call the `done` handler to signify that our task is done.
+
+If it fails we have:
+
+    promise.catch( () => { process.exit(1); });
+    
+Here we call `process.exit(1)` to kill the program and return a failed state
+(in UNIX 0=success, 1=failure).

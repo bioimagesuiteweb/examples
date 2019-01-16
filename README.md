@@ -4,6 +4,24 @@ This is example code for BioImage Suite Web. It introduces certain JavaScript
 and Software Engineering Concepts. It was developed in part also for the needs
 of the Yale Course ``Medical Software Design`` (BENG 406b, Spring 2019). 
 
+## Learning JavaScript
+
+These examples intoduce certains aspects of JavaScript but they are not a
+complete introduction to the language.  For this the reader is referred to the
+two books by Axel Rauschmayer. The first, which covers JavaScript up to
+version 5 (standard usage until maybe 2016) , is
+[Speaking JS](http://speakingjs.com/es5/) by Axel Rauschmayer. Part I -- "A
+JavaScript QuickStart" may be all that you need to read to get
+started. JavaScript v6 (ES2015) is now fast becoming the new standard. A
+second book called [Exploring ES6](http://exploringjs.com/es6/index.html) by
+the same author covers some of the changes. I strongly recommend reading
+Chapters 1-4 for a clear understanding of all that is new here.
+
+Finally, see this
+[document from the BioImageSuite Web repository](https://github.com/bioimagesuiteweb/bisweb/blob/master/docs/AspectsOfJS.md)
+which highlights some aspects of the language that people often find
+confusing.
+
 ## Before you begin
 
  * Install Node.js 10.x (LTS) -- you may download this from:
@@ -43,3 +61,6 @@ complexity. Here is the list
 * [Step 7](./step07) -- a redo of step 6 using
   [BioImage Suite Web code](https://github.com/bioimagesuiteweb/bisweb) to
   create menus, file dialogs and file I/O
+
+---
+
