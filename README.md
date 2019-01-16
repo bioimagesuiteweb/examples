@@ -30,7 +30,8 @@ complexity. Here is the list
 * [Step 2](./step02) -- a slightly more complex node.js application showing how
   to use a module.
 * [Step 3](./step03) -- a simple web-based application showing how to use an
-  old-fashioned module.
+  old-fashioned module. We also introduce here `npm` and the associated
+  package file `package.json` and the task runner `gulp`.
 * [Step 4](./step04) -- a redo of step 3 using proper modules and the webpack
   ''bundler''. We also introduce regression testing using `mocha`.
 * [Step 5](./step05) -- a redo of step 4 but now as a desktop application using
