@@ -1,0 +1,15 @@
+{
+    "private": true,
+    "name": "biswebbrowserexamples",
+    "version": "1.0.0",
+    "description": "Browser Examples for BioImage Suite Web",
+    "author": "Xenios Papademetris",
+    "license": "Apache-2.0",
+    "dependencies": {
+        "biswebbrowser": "^1.1.0-a4"
+    },
+    "devDependencies": {
+        "gulp": "4.0.0",
+        "gulp-webserver": "0.9.1"
+    }
+}
