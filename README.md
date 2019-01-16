@@ -44,8 +44,9 @@ to these examples.
 
 This set of examples shows how to create both the code and, more critically,
 the development/build environment for a multi-context (web, electron, PWA)
-applications. The application itself is trivial, the focus here is on the
-software engineering infrastructure.
+application. The application itself is trivial -- it simply computes the BMI
+given height and weight information. The focus here is really on the software
+engineering infrastructure aspects of the problem.
 
 * [Step 1](./step01) -- a simple commandline (node.js)  `helloworld` application.
 * [Step 2](./step02) -- a slightly more complex node.js application showing how
