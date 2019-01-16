@@ -24,7 +24,7 @@ few lines from the function `registerServiceWorker` in code/pwautils.js
 
         // No Service Worker in Electron
         if (bioimagesuiteweb.getenvironment === 'electron') 
-        return;
+             return;
     
         ...
         
