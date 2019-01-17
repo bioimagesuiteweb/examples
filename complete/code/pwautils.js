@@ -24,13 +24,15 @@ let registerServiceWorker= function() {
     }
     
     // Register the service worker
-    if (!navigator.serviceWorker.controller) {
-        //Register the ServiceWorker
-        navigator.serviceWorker.register('serviceworker.js', {
-            scope: './'
-        }).then(function(reg) {
-            console.log('++++ Service worker has been registered for scope:'+ reg.scope);
-        });
+    if (navigator.serviceWorker) {
+        if (!navigator.serviceWorker.controller)  {
+            //Register the ServiceWorker
+            navigator.serviceWorker.register('serviceworker.js', {
+                scope: './'
+            }).then(function(reg) {
+                console.log('++++ Service worker has been registered for scope:'+ reg.scope);
+            });
+        }
     }
 };
 
@@ -81,8 +83,8 @@ let addInstallButton= function(helpmenu) {
 // https://stackoverflow.com/questions/52000972/pwa-fixed-screensize
 let inPWA=function() {
 
-    return (window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone === true)
-}
+    return (window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone === true);
+};
 
 // Export functions
 module.exports = {
