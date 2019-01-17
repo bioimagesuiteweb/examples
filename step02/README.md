@@ -10,11 +10,11 @@ A node.js module consists of
 
 1. Some JaveScript Code
 2. A set of exported symbols packaged into the ``predefined`` object
-   ``module.exports`.
+   ``module.exports``.
    
 
-For example, in `nodemodule.js`, we define two functions ('isfilenamecsv',
-'isfilenametxt') and then export them as:
+For example, in `nodemodule.js`, we define two functions (`isfilenamecsv`,
+`isfilenametxt`) and then export them as:
 
     // module.exports stores the item that is being exported/exposed
 
@@ -29,7 +29,7 @@ the case here.
 
 ### Using a Module
 
-In main.js we import the module using the `require` keyword as
+In ``main.js`` we import the module using the `require` keyword as follows:
 
     const fnameutils=require('./nodemodule');
 
@@ -47,7 +47,7 @@ in turn maps to the functions `isfilenamecsv` defined in nodemodule.js.
 The constructs `module.exports` and `require` do not work in a Browser, only
 in node.js. They are effectively node.js extensions to the core JavaScript
 language. There are tools such as `browserify` and `webpack` that will take
-code written with these module constructs and transform it (`bundle` it) to
+code written with these module constructs and transform it (bundle it) to
 make it usable in the browser. We will revisit this in [Step 4](../step04).
 
 

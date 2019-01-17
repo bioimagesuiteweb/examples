@@ -1,10 +1,10 @@
 # Simple Web Application with Webpack
 
 This introduces the webpack bundler which allows us to use node.js (and ES6
-style) modules in the browser. In this _style_ of doing things, our raw JS
-code, which now includes statements such as _require_ and _import_ that the
-browser does not handle by default, needs to be `compiled` by webpack to yield
-a clean bundle that is browser compatible.
+style) modules in the browser. In this style of doing things, our raw JS
+code, which now includes statements such as `require` and `import` that the
+browser does not handle by default, needs to be compiled by webpack to yield
+a clean, browser compatible bundle.
 
 Since we move to webpack we can also use `npm` to install runtime dependencies
 such as jQuery and Bootstrap, hence unlike [step3](../step03) there is no
@@ -44,8 +44,12 @@ First build the JS bundle using:
     
 The webpack configuration is in `config/webpack.config.js`. Note that we do
 not bundle `jQuery` -- it is listed in `externals` in the webpack
-configuration. Instead, we leave it as is and include this (and bootstrap)
-directly in `index.html`.
+configuration. Instead, we leave it as is and include it
+directly in `index.html`. We do the same for `bootstrap`.
+
+ <!-- JS files -->
+    <script src="../node_modules/jquery/dist/jquery.min.js"></script>
+    <script src="../node_modules//bootstrap/dist/js/bootstrap.min.js"></script>
     
 Next start the webserver using:
 
@@ -139,23 +143,22 @@ This syntax implies that our text is a function -- the construct  `(done) => {
 }` is a JavaScript function defined using the `fat arrow` syntax (see 
 [this MDN article](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/Arrow_functions)
 for more details). The argument `done` is the function which we will call when
-our task is __completed__. Tasks in gulp are `asynchronous`.
+our task is completed. Tasks in gulp are [asynchronous](https://eloquentjavascript.net/11_async.html).
 
-The second aspect is that we use a function (defined in this gulpfile) to
+The second aspect is that we use a function defined in this gulpfile to
 execute `webpack` as an external program by calling its command line version
 `webpack-cli`. We simply pass as arguments the configuration file
 'config/webpack.config.js' and webpack does the rest.
 
 Finally, the function `executeCommand` involves asynchronous processing and
-returns a JavaScript `Promise` -- see the [MDN article __Using Promises__](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Using_promises) for more details. We could have re-written this code as:
+returns a JavaScript `Promise` — see the [MDN article __Using Promises__](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Using_promises) for more details. We could have re-written this code as:
 
     let promise=executeCommand(cmd,__dirname);
     promise.then( () => { done(); });
     promise.catch( () => { process.exit(1); });
     
-A promise inherently returns two events ('then' and 'catch') to which we can
-register event handlers. If everything goes well, we end up in `then` and if
-there is a problem in `catch`. See the code for `executeCommand` to see how
+A `Promise` can return into two different functions, `then` or `catch`. If the Promise finishes its function without incident and `resolve`s, it will exit to `then`, and if
+it `reject`s with an error it will exit to `catch`. See the code for `executeCommand` to see how
 this is created. The first has the form:
 
     promise.then( somefunction )
@@ -173,4 +176,4 @@ If it fails we have:
     promise.catch( () => { process.exit(1); });
     
 Here we call `process.exit(1)` to kill the program and return a failed state
-(in UNIX 0=success, 1=failure).
+(in UNIX, 0=success, 1=failure).

@@ -11,7 +11,7 @@ This is a complex example made available to the students of Yale BENG 406b
 2. Then install the prerequisites using `npm` (on a MS-Windows
 machine __omit `sudo`__)
 
-        sudo npm install -g gulp mocha  eslint webpack webpack-cli rimraf 
+        sudo npm install -g gulp mocha eslint webpack webpack-cli rimraf 
         sudo npm install -g electron --unsafe-perm=true --allow-root
         sudo npm install -g electron-packager
 

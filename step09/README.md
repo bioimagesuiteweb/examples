@@ -2,22 +2,18 @@
 
 In the previous examples, we have run the web application from its source
 directory (e.g. web/index.html) with only the JS bundle going to a separate
-build directory. While this works for development use, it is hard (and ugly)
+build directory. While this works for development use, it's less practical
 to move this type of setup to a server.
 
 The goal of this example is to demonstrate how to create a tidy copy of
-everything necessary (and nothing that is not necessary) into a clean
+everything necessary into a clean
 directory and ultimately a zip file for upload to a server.
 
 ## Install Dependencies
 
-First install our runtime dependencies (biswebbrowser which includes jQuery,
-boostrap, three.js and webcomponents), webpack and a local web server using:
+Install our dependencies as usual:
 
 	npm install -d
-    
-We also have a small shimming module `webcomponents-lite.js` in the externals
-directory for those browsers that do not natively support custom web elements.
     
 ## To Run:
 
@@ -26,32 +22,34 @@ directory for those browsers that do not natively support custom web elements.
         gulp build
         
         
-2. To test, first type:
+2. Then test using:
 
         gulp webserver
         
-    Then open your browser to 
+    and open your browser to 
     
         http://localhost:8080/build/web/index.html
         
-3. To create a zip file type
+3. To create a zip file type:
   
-* `gulp zip` -- will create a zip file for upload to a web server. This can be
-  found in `build/dist`.
+        gulp zip 
+    
+
+    This will create a zip file for upload to a web server, which can be found in `build/dist`.
 
 
-You can streamline the entire process type
+Alternatively, type:
 
     gulp webpage
     
-This will first build and then zip the application.
+This first build and then zip the application.
 
 
 ## Packaging Problems
 
 ### 1. Copying Unchanging Files from Various Directories to a Single Place
 
-The first task is to move all static assets (images, code, .css files, fonts
+The first task is to move all static assets (images, code, `.css` files, fonts
 etc.) that do not change to a single location. We will use the directory
 `build/web` for this purpose. This is accomplished by the task `commonfiles`
 which has the form:
@@ -88,7 +86,7 @@ directories from the various places to `build/web` (which is stored in
 `options.outdir`).
 
 gulp.src selects and streams a set of files. It uses wildcards such as '*' and
-'**' to select many files or recursive sets of files.  See
+'**' to select many files or recursive sets of files, see
 [the Gulp docs](https://gulpjs.org/API.html#gulp-src-globs-options) for more
 info. This is then copied via sending via a pipe to a gulp.dist whose primary
 argument is the directory in which the files are to be copied.
@@ -98,12 +96,12 @@ All these operations are asynchronous so we group them using es
 
 ### 2. Webpack output
 
-We simply store the webpack output bundle in `build/web` (this is specified in
-[config/webpack_config.js](config/webpack.config.js) by changing the `output` entry.
+We simply store the webpack output bundle in `build/web`, which is specified in
+[config/webpack_config.js](config/webpack.config.js), by changing the `output` entry.
 
 ### 3. The index.html file
 
-Let's take a look at the header of this from [Step 8](../step08).
+Let's take a look at the header of this from [Step 8](../step08/README.md).
 
     <link rel="stylesheet" type="text/css" href="../lib/css/bootstrap_dark_edited.css">
     <link rel="stylesheet" type="text/css" href="./index.css">
@@ -119,7 +117,7 @@ Let's take a look at the header of this from [Step 8](../step08).
     <link rel="manifest" href="./manifest.json">
 
 Note that while this works nicely in development mode, the files are all over
-the place. We use templating, and renaming plugins in gulp to rename this
+the place. We use templating and renaming plugins in `gulp` to rename this
 file. First the header is changed to:
 
     <!-- external css files -->
@@ -164,15 +162,15 @@ to find and replace with new content. This is accomplsihed in the task
     });
 
 The elements in `htmlreplace` (js,css,manifest) are used to replace the blocks
-in the html file (build:css to endbuld) and (build:js to endbuild) and
-(build:manifest to endbuild).
+in the html file, build:css to endbuld, build:js to endbuild and
+build:manifest to endbuild.
 
-The alljs and allcss variables are simply lists of all '.js' and all '.css'
-files to be included in the .html file
+The `alljs` and `allcss` variables are simply lists of all `.js` and `.css`
+files to be included in the `.html` file
 
     alljs : [ 'webcomponents-lite.js', 'jquery.min.js', 'three.min.js', 'bootstrap.min.js', 'libbiswasm_nongpl_wasm.js', 'bislib.js', 'index_bundle.js'  ],
     allcss : [ 'bootstrap_dark_edited.css', 'index.css' ],
-options
+
 
 The final output is a clean html file ready to ship:
 

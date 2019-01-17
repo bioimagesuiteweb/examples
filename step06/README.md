@@ -1,12 +1,11 @@
 # Using Web components
 
-This is a rehash of [step05](./step05) to use custom web elements (or
-webcomponents). We define a single component `custom-form` and include it in
+This is a rehash of [step05](./step05) using [Custom Web Elements](https://developer.mozilla.org/en-US/docs/Web/Web_Components/Using_custom_elements), aka Web Components. We define a single component `custom-form` and include it in
 `web/index.html` as:
 
-    <custom-form  id="mainwidget"></custom-form>
+    <custom-form id="mainwidget"></custom-form>
 
-In fact, the beauty of components is that you can add them multiple times, so
+The beauty of components is that you can add them multiple times, so
 in fact we will instead add two components:
 
     <!-- the beauty of components is that you can add them multiple times -->
@@ -16,7 +15,7 @@ in fact we will instead add two components:
 
 ## Install Dependencies
 
-First install our runtime dependencies (jQuery and Boostrap), webpack and a local web server using:
+First install our runtime dependencies jQuery, Boostrap, webpack and a local web server using:
 
 	npm install -d
     
@@ -50,27 +49,27 @@ We introduce also a new development mode setup in gulp. To try this type:
     
 This does three things:
 
-1. Runs `webpack` in watch mode -- this means if you edit any .js files it will
+1. Runs `webpack` in watch mode — this means if you edit any .js files it will
    automatically rebuild the bundle.
 2. Runs the `eslint` code to automatically check and changed files for syntax
-   errors. (You can manually run this using `gulp eslint`).
+   errors. You run this manually using `gulp eslint`.
 3. Runs the webserver as before.
 
 
-## The code -- creating and registering custom web elements
+## The code — creating and registering custom web elements
 
 This is identical to [Step 5](./step05) other than for the fact the code in
-`index.js` is now simply a require statement to load `form.js`.
+`index.js` is now a require statement to load `form.js`.
 
-In `form.js` we define our component. Three things are particularly worth
+In `form.js` we define our component. Three things are worth
 noting here:
 
-1. This is a class that derives from HTMLElement as shown below:
+1. This is a class that derives from `HTMLElement` as shown below:
 
-        class CustomFormElement extends  HTMLElement {
+        class CustomFormElement extends HTMLElement {
 
-2. The two key methods are the constructor and the `connectedCallback`. The
-   first is called when the object is created and the second, when it is
+2. The two key methods are the constructor and `connectedCallback`. The
+   first is called when the object is created and the second when it is
    attached to the page.
    
         constructor() {
@@ -88,10 +87,10 @@ noting here:
         
 This tells the browser that the class `CustomFormElement` will be created when
 an html element of the form `<custom-form>` is added to the page. The later
-name (`custom-form`) __must include a hypen `-`__.
+name, `custom-form`, __must include a hypen `-` to be registered as a Custom Web Element__.
 
 
-Finally index.js is simply the single line:
+Finally, index.js is the single line:
 
     require('./form.js');
     

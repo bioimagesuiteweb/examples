@@ -3,15 +3,15 @@
 There is no code for this step as the additions to step 9 for this lead us to
 the [complete example](../complete). In this file we discuss the additional
 info in
-[complete/gulpfile.js)(../complete/gulpfile.js) that are needed to create packaged electron applications.
+[complete/gulpfile.js](../complete/gulpfile.js) that are needed to create packaged electron applications.
 
 #### Code Changes
 
-BioImage Suite Web handles the context differences between Web and Electron in terms of File I/O and File Dialogs (which are the most critical differences). The only other changes to the code is to put some checks in [code/pwautils.js](../complete/code/pwautils.js)
+BioImage Suite Web handles the context differences between Web and Electron in terms of File I/O and File Dialogs, which are the most critical differences. The only other changes to the code is to put some checks in [code/pwautils.js](../complete/code/pwautils.js)
 to stop things from running if we are in Electron.
 
 The changes are minor. At the top of the file we require bioimagesuiteweb
-(this is the same as before):
+the same way as before:
 
      const bioimagesuiteweb=require('bislib');
 
@@ -32,40 +32,36 @@ few lines from the function `registerServiceWorker` in code/pwautils.js
 
 ### Differences Between Packaging Electron Apps and Web Apps
 
-A key difference is that Electron Apps (when packaged) are:
+Electron Apps when packaged consist of:
 
 1. A package.json file describing the applications
-2. Potentially a node_mdules directory with the node-style dependencies not packaged into webpack.
-3. The Electron Applications do not need the extra information w.r.t PWAs (see [Step 8](../step08).
+2. Potentially a node_modules directory with the node-style dependencies not packaged into webpack.
+
+However, Electron Applications do not need the extra information w.r.t PWAs, see [Step 8](../step08/README.md).
 
 
 To package an electron app we follow the following five steps:
 
-1. Run the same `build` task as for the web-page
+1. Run the same `build` task as for the web page
 2. Create the package.json file for the Electron application and put this in
    `build/web`
-3. Execute `npm install` inside `build/web` to download the node.js style
+3. Run `npm install` inside `build/web` to download the node.js style
    dependencies.
-4. Remove any files not needed for electron (AppImages for one)
+4. Remove any files not needed for electron ( e.g. AppImages)
 5. Run `electron-packager` to create the Electron application as a directory.
 6. Zip this output to create a final zip file.
 
 
-
-
-
-
-
 We discuss steps 2-5 below:
 
-#### Step 2 -- create package.json file
+#### Step 2 — create package.json file
 
 We actually do this as part of the `commonfiles` task. First we note that the
 global variable appinfo contains the `package.json` file.
 
     const appinfo=require('./package.json');
     
-In the task `commonfiles` we first copy the files as in [Step 9](../step09)
+In the task `commonfiles` we first copy the files as in [Step 9](../step09/README.md),
 but adding the two electron-specific js files.
 
     gulp.task('commonfiles', (done) => {
@@ -96,14 +92,14 @@ but adding the two electron-specific js files.
       });
 
 When the copying is done, we create the new package.json file in `build/web`
-based on what we know about the dependencies of the electron app (from
-web/electronpreload.js).
+based on what we know about the dependencies of the electron app from
+web/electronpreload.js.
 
 
-#### Step 3-6 -- packaging
+#### Step 3-6 — packaging
 
 These are performed in the `electronpackage` task. This is mostly boilerplate
-code -- see the comments inside this for a description of what is going on.
+code — see the comments inside this for a description of what is going on.
      
      gulp.task('electronpackage', (done) => {
      
@@ -133,7 +129,7 @@ Create the name of the zip files
              suffix=".app.zip";
          }
 
-Cleanup time
+Then clean up the excess build directories.
 
 The variable appdir stores the name of electron-packagers's output
 directory. Remove this just in case to start clean.
@@ -177,7 +173,7 @@ Execute Electron Packager
              
              executeCommand(cmdline,indir).then( () => {
 
-Create ZIP file -- same code as in [Step 9](../step09).
+Create ZIP file — same code as in [Step 9](../step09/README.md).
                  
                  let zname=path.resolve(path.join(indir,path.join('..',`dist/${appinfo.name}_${appinfo.version}_${name}.zip`)));
                  let basez=path.basename(zname);
