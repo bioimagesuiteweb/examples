@@ -12,8 +12,9 @@ self.addEventListener('install', function(event) {
             }).catch( (e) => {
                 console.log(e);
             });
-        }))
+        }));
 });
+    
 
 //If any fetch fails, it will look for the request in the cache and serve it from there first
 self.addEventListener('fetch', function(event) {
