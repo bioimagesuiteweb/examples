@@ -5,6 +5,8 @@ In this example, we will introduce Progressive Web Applications (PWAs).
 A great introduction to this topic can be found on the
 [Google Developers Webpage](https://developers.google.com/web/progressive-web-apps/).
 
+See also this recent article from [Google Developers for PWA on the desktop](https://developers.google.com/web/progressive-web-apps/desktop)
+
 We also recommend the [PWA Builder Tool](https://www.pwabuilder.com/) from Microsoft.
 
 ## PWAs
