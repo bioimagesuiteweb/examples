@@ -18,6 +18,6 @@
         "webpack-cli": "3.2.1"
     },
     "dependencies": {
-        "biswebbrowser": "^1.1.0-a4"
+        "biswebbrowser": "latest"
     }
 }
