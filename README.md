@@ -1,3 +1,7 @@
+![Logo](https://bioimagesuiteweb.github.io/bisweb-manual/bisweb_newlogo_small.png)
+
+---
+
 # Examples Repository
 
 This is example code for BioImage Suite Web. It introduces certain JavaScript
