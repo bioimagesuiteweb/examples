@@ -60,7 +60,7 @@ install on Mac OSX or Linux you will need to use Chrome. First enable the flag:
    
         chrome://flags#enable-desktop-pwas
         
-Then open http://localhost:8080/web/index.html as usual.
+Then open http://localhost:9000/web/index.html as usual.
 
 See if you have an option under the Help menu to install this as a PWA (as
 shown below)

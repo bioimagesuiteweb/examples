@@ -28,7 +28,7 @@ Install our dependencies as usual:
         
     and open your browser to 
     
-        http://localhost:8080/build/web/index.html
+        http://localhost:9000/build/web/index.html
         
 3. To create a zip file type:
   

@@ -30,7 +30,7 @@ machine __omit `sudo`__)
         
     Then open your browser to 
     
-        http://localhost:8080/build/web/index.html
+        http://localhost:9000/build/web/index.html
         
     Alternatively run this as a desktop application using (from this directory)
     
@@ -41,7 +41,7 @@ machine __omit `sudo`__)
    
 * `gulp devel` -- runs a continuous build and watch process as you edit any js
   code. In this mode use the live html version
-  `http://localhost:8080/web/index.html`
+  `http://localhost:9000/web/index.html`
   
 * `gulp package` -- will create an electron packaged application in
   `build/dist`
@@ -62,7 +62,7 @@ and many many more.
    
         chrome://flags#enable-desktop-pwas
         
-Then open http://localhost:8080/build/web/index.html as usual.
+Then open http://localhost:9000/build/web/index.html as usual.
 
 If you are at Yale you may open the application by going to 
 

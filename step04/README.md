@@ -58,7 +58,7 @@ Next start the webserver using:
 __If you are lazy; just typing `gulp` will execute these two steps in series.__
     
 Then, if does not open automatically, navigate to
-[http://localhost:8080/web/index.html](http://localhost:8080/web/index.html).
+[http://localhost:9000/web/index.html](http://localhost:9000/web/index.html).
 
 
 ## The code

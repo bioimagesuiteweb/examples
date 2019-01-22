@@ -41,7 +41,7 @@ To run this, type:
     gulp webserver
     
 Then, if does not open automatically, navigate to
-[http://localhost:8080/web/index.html](http://localhost:8080/web/index.html).
+[http://localhost:9000/web/index.html](http://localhost:9000/web/index.html).
 
 
 ## The code
@@ -78,7 +78,7 @@ Our `gulpfile.js`, in this example, is very simple and takes the form:
         const options= {
             "root" : __dirname,
             "host" : 'localhost', // change this to '0.0.0.0' to allow remote access
-            "port" : '8080',
+            "port" : '9000',
             "directoryListing": true,
             "open": 'web/index.html'
         };

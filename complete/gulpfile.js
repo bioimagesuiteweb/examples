@@ -118,7 +118,7 @@ const options = {
     webserver : {
         "root" : path.normalize(__dirname),
         "host" : 'localhost', // change this to '0.0.0.0' to allow remote access
-        "port" : '8080',
+        "port" : '9000',
         'directoryListing': true,
     },
     electronversion : "4.0.1",
