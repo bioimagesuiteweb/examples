@@ -16,7 +16,7 @@
 
 
 
-var categories = [ 'Error', 'Underweight','Normal Weight','Overweight', 'Obese' ];
+let categories = [ 'Error', 'Underweight','Normal Weight','Overweight', 'Obese' ];
 
 
 /**
@@ -27,7 +27,7 @@ var categories = [ 'Error', 'Underweight','Normal Weight','Overweight', 'Obese' 
  * @param {boolean} ismetric - if true then use metric units (kilograms/meters) else use imperial units (inches/pounds). Default if not specified is false (i.e. use imperial units)
  * @returns {number} -- the body mass index in Kg/m^2
  */
-var computebmi=function(weight,height,ismetric) {
+let computebmi=function(weight,height,ismetric) {
     
     // Set default parameters
     ismetric=ismetric || false;
@@ -56,7 +56,7 @@ var computebmi=function(weight,height,ismetric) {
  * @param {number} bmi - the bmi (perhaps as computed from {@link  BmiModule.computebmi}
  * @returns {string} -- a descriptive text for the BMI.
  */
-var classifybmi=function(bmi) {
+let classifybmi=function(bmi) {
     bmi = bmi || 0;
     
     if (bmi< 10 || bmi > 50)
@@ -80,7 +80,7 @@ var classifybmi=function(bmi) {
  * @alias BmiModule.getcategories
  * @returns {array} -- an array of the various BMI categories.
  */
-var getcategories = function() {
+let getcategories = function() {
     return categories.slice(0);
 };
 
@@ -93,27 +93,27 @@ var getcategories = function() {
  * @param {boolean} ismetric - if true units were metric else imperial.
  * @returns {text} -- a text description of the bmi
  */
-var getdescription=function(weight,height,ismetric) {
+let getdescription=function(weight,height,ismetric) {
     
     ismetric=ismetric || false;
     weight =weight || 0;
     height =height || 0;
     
     // Compute BMI
-    var bmi=computebmi(weight,height,ismetric);
+    let bmi=computebmi(weight,height,ismetric);
     
     // Round BMI to one decimal place
     bmi=Math.round(bmi*100)*0.01;
     
     // Generate Description
-    var desc=classifybmi(bmi);
+    let desc=classifybmi(bmi);
     
     // Generate output string
-    var units=[ 'Kg','m' ];
+    let units=[ 'Kg','m' ];
     if (!ismetric)
 	units=['Lb','In'];
     
-    var outtext='Inputs: weight='+weight+' '+units[0]+', height='+height+' '+units[1]+"\n";
+    let outtext='Inputs: weight='+weight+' '+units[0]+', height='+height+' '+units[1]+"\n";
     if (desc!=="Error") {
 	outtext+='      BMI = '+bmi+"\n";
 	outtext+='      Categorization = '+desc+"\n";
