@@ -3,7 +3,7 @@
 "use strict";
 
 let assert = require("assert");
-let bmi=require('../web/bmimodule');
+let bmi=require('../code/bmimodule');
 
 describe('Testing BMI (bmimodule.js) \n', function() {
 
