@@ -47,21 +47,16 @@
     <div><button class="btn btn-danger" type="submit" id="compute">Show Mouse Tool</button></div>
   </nav>
   
-  <nav class="navbar navbar-default navbar-fixed-bottom">
-    <H4>Open the JS Console to see the print outputs</H4>
-  </nav>
-  
-
   <!-- this is an optional viewer so that you can see what is going on -->
-  <div id="viewerwidget" style="width:800px;
-                                left:25px;position:absolute;padding:10 10 10 10;
-                                top:65px; background-color:#2222222">
+  <div id="viewerwidget">
     
     <bisweb-viewerlayoutelement
       id="viewer_layout"
-      bis-dockwidth="300"
+      bis-fixed="1"
+      bis-dockwidth="400"
       bis-coreopen="true">
     </bisweb-viewerlayoutelement>
+    
     
     <bisweb-colormapcontrollerelement id="viewer_cmap">
     </bisweb-colormapcontrollerelement>
@@ -71,7 +66,13 @@
       bis-layoutwidgetid="#viewer_layout"
       bis-colormapeditorid="#viewer_cmap">
     </bisweb-orthogonalviewer>
-    
+
+    <bisweb-snapshotelement
+      bis-layoutwidgetid="#viewer_layout"
+      bis-dowhite="false"
+      bis-viewerid="#viewer">
+    </bisweb-snapshotelement>
+
     <bisweb-mousetool
       id="mousetoolid"
       bis-layoutwidgetid="#viewer_layout"

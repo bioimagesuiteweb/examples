@@ -2,13 +2,10 @@
 
 /* global window,document,$ */
 
-// Get access to the computational tools 
+// Get access to bisweb export object 
 const bisweb=window.bioimagesuiteweb;
-const util=bisweb.util;
-const webutil=bisweb.webutil;
-const bis_genericio=bisweb.genericio;
 const BisWebPanel = bisweb.biswebpanel;
-
+const bisCrossHair=bisweb.CrossHair;
 
 class MouseToolElement extends HTMLElement {
 
@@ -20,6 +17,8 @@ class MouseToolElement extends HTMLElement {
         this.panel=null;
         this.orthoviewer=null;
         this.image=null;
+        this.subviewers=[];
+        this.cursormeshes=null;
     }
     
     /** Called by OrthoViewer when the image changes */
@@ -30,7 +29,9 @@ class MouseToolElement extends HTMLElement {
     initialize(subviewers,volume) {
 
         this.image=volume;
+        this.subviewers=subviewers;
         this.updateimageinfo();
+        this.createcursormeshes();
      
     }
 
@@ -53,9 +54,56 @@ class MouseToolElement extends HTMLElement {
 
         this.textnode.empty();
         this.textnode.append($('<PRE>'+mm.join(' ')+'</PRE>'));
+        if (mousestate===2)
+            this.drawcursor(mm);
+    }
+
+    /** draw cursor at position = mm */
+    drawcursor(mm) {
+        
+        if (this.cursormeshes===null)
+            return;
+        
+        this.cursormeshes.forEach( (e) => {
+            e.position.set(mm[0],mm[1],mm[2]);
+            e.visible=true;
+        });
+
+
     }
 
 
+    /** create meshes for the cursor. */
+    createcursormeshes() {
+
+        let sz=this.image.getImageSize();
+        let spa=this.image.getSpacing();
+        let wd= sz[0] * 0.1;
+        let thk=spa[0]*0.8;
+        let core=bisCrossHair.createcore(wd,thk,true,wd*0.2);
+        let cursorgeom=new THREE.BufferGeometry();
+        cursorgeom.setIndex(new THREE.BufferAttribute( core.indices, 1 ) );
+        if (THREE['REVISION']<101) {
+            cursorgeom.addAttribute( 'position', new THREE.BufferAttribute( core.vertices, 3 ) );
+        } else {
+            cursorgeom.setAttribute( 'position', new THREE.BufferAttribute( core.vertices, 3 ) );
+        }
+
+        this.cursormeshes=new Array(this.subviewers.length);
+        
+        let gmat=new THREE.MeshBasicMaterial( {
+            wireframe : true,
+            color: 0xff8800, 
+        } );
+
+        for (let i=0;i<this.subviewers.length;i++) {
+            this.cursormeshes[i]=new THREE.Mesh(cursorgeom, gmat);
+            this.cursormeshes[i].visible=false;
+            this.subviewers[i].getScene().add(this.cursormeshes[i]);
+        }
+    }
+
+    /** function to call when element is added to DOM  */
     connectedCallback() {
 
         let viewerid=this.getAttribute('bis-viewerid');
@@ -65,8 +113,7 @@ class MouseToolElement extends HTMLElement {
         this.panel=new BisWebPanel(layoutcontroller,
                                    {  name  : 'Mouse Tool',
                                       permanent : false,
-                                      width : '290',
-                                      dual : true,
+                                      width : '350',
                                    });
         this.parentDomElement=this.panel.getWidget();
         this.imageinfo=$("<div>No Image</div>");
@@ -77,22 +124,27 @@ class MouseToolElement extends HTMLElement {
         
         this.orthoviewer=document.querySelector(viewerid);
         this.orthoviewer.addMouseObserver(this);
-
+        this.show();
     }
                                 
-
+    /** show the panel in the dock */
     show() {
-        this.panel.show();
+        if (this.panel)
+            this.panel.show();
     }
 
+    /** is the  panel open */
     isOpen() {
-        return this.panel.isOpen();
+        if (this.panel)
+            return this.panel.isOpen();
+        return false;
     }
     
 
 }
 
-webutil.defineElement('bisweb-mousetool', MouseToolElement);
+// Register element
+window.customElements.define('bisweb-mousetool', MouseToolElement);
 
 
 
