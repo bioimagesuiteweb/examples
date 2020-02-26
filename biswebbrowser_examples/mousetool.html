@@ -1,0 +1,83 @@
+<!---  LICENSE
+ 
+ _This file is Copyright 2018 by the Image Processing and Analysis Group (BioImage Suite Team). Dept. of Radiology & Biomedical Imaging, Yale School of Medicine._
+ 
+ BioImage Suite Web is licensed under the Apache License, Version 2.0 (the "License");
+ 
+ - you may not use this software except in compliance with the License.
+ - You may obtain a copy of the License at [http://www.apache.org/licenses/LICENSE-2.0](http://www.apache.org/licenses/LICENSE-2.0)
+ 
+ __Unless required by applicable law or agreed to in writing, software
+ distributed under the License is distributed on an "AS IS" BASIS,
+ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ See the License for the specific language governing permissions and
+ limitations under the License.__
+ 
+ ENDLICENSE -->
+
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+    <title>Mouse Tool Example</title>
+
+    <link rel="icon" href="images/favicon.ico">
+
+    <!-- external css files -->
+    <link rel="stylesheet" type="text/css"
+          href="node_modules/biswebbrowser/dist/bootstrap_dark_edited.css">
+        <link rel="stylesheet" type="text/css" href="mousetool.css">
+
+
+    <!-- external javascript files -->
+    <script src="node_modules/biswebbrowser/dist/webcomponents-lite.js"></script>
+    <script src="node_modules/biswebbrowser/dist/jquery.min.js"></script>
+    <script src="node_modules/biswebbrowser/dist/bootstrap.min.js"></script>
+    <script src="node_modules/biswebbrowser/dist/three.min.js"></script>
+    <script src="node_modules/biswebbrowser/dist/libbiswasm_nongpl_wasm.js"></script>
+    <script src="node_modules/biswebbrowser/dist/bislib.js"></script>
+
+    <script src="./mousetool.js"></script>
+    
+</head>
+<body>
+  
+  <nav class="navbar navbar-default navbar-fixed-top">
+    <div><button class="btn btn-danger" type="submit" id="compute">Show Mouse Tool</button></div>
+  </nav>
+  
+  <nav class="navbar navbar-default navbar-fixed-bottom">
+    <H4>Open the JS Console to see the print outputs</H4>
+  </nav>
+  
+
+  <!-- this is an optional viewer so that you can see what is going on -->
+  <div id="viewerwidget" style="width:800px;
+                                left:25px;position:absolute;padding:10 10 10 10;
+                                top:65px; background-color:#2222222">
+    
+    <bisweb-viewerlayoutelement
+      id="viewer_layout"
+      bis-dockwidth="300"
+      bis-coreopen="true">
+    </bisweb-viewerlayoutelement>
+    
+    <bisweb-colormapcontrollerelement id="viewer_cmap">
+    </bisweb-colormapcontrollerelement>
+    
+    <bisweb-orthogonalviewer
+      id="viewer"
+      bis-layoutwidgetid="#viewer_layout"
+      bis-colormapeditorid="#viewer_cmap">
+    </bisweb-orthogonalviewer>
+    
+    <bisweb-mousetool
+      id="mousetoolid"
+      bis-layoutwidgetid="#viewer_layout"
+      bis-viewerid="#viewer">
+    </bisweb-mousetool>
+  </div>
+
+</body>
+</html>

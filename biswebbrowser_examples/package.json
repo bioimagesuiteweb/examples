@@ -6,7 +6,7 @@
     "author": "Xenios Papademetris",
     "license": "Apache-2.0",
     "dependencies": {
-        "biswebbrowser": "latest"
+        "biswebbrowser": "biswebbrowser-1.2.0-b2.tgz"
     },
     "devDependencies": {
         "gulp": "4.0.0",

@@ -37,6 +37,9 @@ const formtext=`
     <HR>`;
 
 
+
+
+
 // -----------------------------------------------------------------
 /**
  * The custom form element
@@ -48,8 +51,37 @@ const formtext=`
  *
  */
 
+class textElement {
 
-class CustomFormElement extends  HTMLElement {
+
+    constructor(parent,name,key,value,width='200px') {
+        
+        this.div=$(`<div class="form-group"></div>`);
+        let lab=$(`<label for="${key}">${name}</label>`);
+        let inp=$(`<input type="number" step="any" class="form-control" name="${key}" placeholder="${value}" style="${width}">`);
+        this.div.append(lab);
+        this.div.append(inp);
+        parent.append(this.div);
+	this.input=inp;
+    }
+
+    getElement() {
+        return this.div;
+    }
+    
+    getValue() {
+
+        return this.input.val() || 0;
+    }
+
+    setValue(v) {
+	this.input.val(v);
+    }
+};
+
+
+
+class CustomForm {
 
     constructor() {
 
@@ -57,16 +89,54 @@ class CustomFormElement extends  HTMLElement {
 	this.resultsdialog=null;
     }
     
-    connectedCallback() {
+    
+    createCheckElement(name,key,value) {
+	let str=`<div class="checkbox">
+	  <label>
+	    <input type="checkbox" name="${key}" checked="${value}"> ${name}
+	  </label>
+	</div>`;
+	let elem=$(str);
+	return elem;
+	
 
+    }
+
+
+    createForm() {
+        let str=`<form class="form"></form>`;
+        return $(str);
+    }
+
+    createSubmitButton(name,key,width="200px") {
+	let str=`<button class="btn btn-primary" type="submit" name="${key}" style="width:${width}">${name}</button>`;
+        return $(str);
+    }
+
+
+    createGUI(id) {
+
+        
+        
 	// Create GUI
-	this.core_element=$(formtext);
-	this.appendChild(this.core_element[0]); // mapping for Jquery to regular web element
+        let form=this.createForm();
+        this.weight_input=new textElement(form,'Weight','weight',70.0);
+        this.height_input=new textElement(form,'Height','height',1.70);
+        let check=this.createCheckElement('Metric','metric',true);
+        let button=this.createSubmitButton('Compute BMI','compute');
 
-	this.weight_input=this.core_element.find(`[name='weight']`);
-	this.height_input=this.core_element.find(`[name='height']`);
-	this.metric_input=this.core_element.find(`[name='metric']`);
-	this.compute_button=this.core_element.find(`[name='compute']`);
+        let button2=this.createSubmitButton('Add More','addmore');
+
+        form.append(check);
+        form.append(button);
+        form.append(button2);
+        
+
+        $('id').append(form);
+        
+	//this.appendChild(form[0]); // mapping for Jquery to regular web element
+	this.metric_input=form.find(`[name='metric']`);
+	this.compute_button=form.find(`[name='compute']`);
 
 	// Attach a callback to the compute button on the GUI
 	this.compute_button.click( (e) => {
@@ -80,14 +150,25 @@ class CustomFormElement extends  HTMLElement {
 	    ismetric  : true,
 	});
 
+        let counter=1;
+        let b=form.find(`[name='addmore']`);
+        
+        b.click( (e) => {
+            e.preventDefault(); // cancel default behavior
+            counter=counter+1;
+            let name=`Random-${counter}`;
+            let key=`r-${counter}`;
+            let txt=new textElement(form,name,key,counter+1);
+        });
 
-}
+
+    }
 
     setValues(state) {
 
 	// Set Values from dictionary
-	this.weight_input.val(state.weight);
-	this.height_input.val(state.height);
+	this.weight_input.setValue(state.weight);
+	this.height_input.setValue(state.height);
 	this.metric_input.prop('checked', state.ismetric);
     }
 
@@ -95,8 +176,8 @@ class CustomFormElement extends  HTMLElement {
 
 	// Return output as a dictionary
 	let output= {
-	    weight : this.weight_input.val() || 0,
-	    height : this.height_input.val() || 0,
+	    weight : this.weight_input.getValue(),
+	    height : this.height_input.getValue(),
 	    ismetric : this.metric_input.is(":checked") || false
 	};
 
@@ -110,28 +191,28 @@ class CustomFormElement extends  HTMLElement {
      * It first calls {@link Main.storeGUIValuesInApplicationState} to update the 
      * current application state from the GUI and then {@link BmiModule.getdescription} to generate the results
      */
-     compute() {
-	 let values=this.getValues();
-    
-	 // Compute description text
-	 let outtext=bmi.getdescription(values.weight,
-					values.height,
-					values.ismetric);
-	 
-	 // Replace all linebreaks "\n" with "<BR>"
-	 outtext=outtext.replace(/\n/g,'<BR>');
-	 
-         // Set the text
-	 
-	 if (this.resultsdialog===null) {
-	     this.resultsdialog=webutil.createmodal("BMI Results","modal-sm");
-	 }
-    
-	 let content=$('<P>'+outtext+'</P>');
-	 this.resultsdialog.body.empty();
-	 this.resultsdialog.body.append(content);
-	 this.resultsdialog.dialog.modal('show');
-     }
+    compute() {
+	let values=this.getValues();
+        
+	// Compute description text
+	let outtext=bmi.getdescription(values.weight,
+				       values.height,
+				       values.ismetric);
+	
+	// Replace all linebreaks "\n" with "<BR>"
+	outtext=outtext.replace(/\n/g,'<BR>');
+	
+        // Set the text
+	
+	if (this.resultsdialog===null) {
+	    this.resultsdialog=webutil.createmodal("BMI Results","modal-sm");
+	}
+        
+	let content=$('<P>'+outtext+'</P>');
+	this.resultsdialog.body.empty();
+	this.resultsdialog.body.append(content);
+	this.resultsdialog.dialog.modal('show');
+    }
 
 
     /**
@@ -139,7 +220,7 @@ class CustomFormElement extends  HTMLElement {
      * from a text fileobjeect
      */
     load(fileobject) {
-    
+        
 	// Read returns a structure f
 	bisgenericio.read(fileobject).then( (f) => {
 	    
@@ -161,7 +242,7 @@ class CustomFormElement extends  HTMLElement {
 	}).catch( (e) => {
             webutil.createAlert(e,true);
         });
-    
+        
     }
 
     /**
@@ -183,6 +264,6 @@ class CustomFormElement extends  HTMLElement {
 
 
 // Register the element
-window.customElements.define('custom-form', CustomFormElement);
+module.exports=CustomForm;
 
 
