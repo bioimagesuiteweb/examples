@@ -53,7 +53,18 @@ class MouseToolElement extends HTMLElement {
     updatemousecoordinates(mm,plane,mousestate) {
 
         this.textnode.empty();
-        this.textnode.append($('<PRE>'+mm.join(' ')+'</PRE>'));
+        if (!this.image)
+            return;
+
+        let spa=this.image.getSpacing();
+        let voxcoord=[0,0,0,0]; // 4D
+        for (let i=0;i<=2;i++) {
+            voxcoord[i]=mm[i]/spa[i];
+        }
+
+        let val=this.image.getVoxel(voxcoord)
+        
+        this.textnode.append($('<PRE> mm='+mm.join(' ')+', intensity='+val+'</PRE>'));
         if (mousestate===2)
             this.drawcursor(mm);
     }
