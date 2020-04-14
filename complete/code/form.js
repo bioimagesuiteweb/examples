@@ -84,8 +84,6 @@ class textElement {
 class CustomForm {
 
     constructor() {
-
-	super();
 	this.resultsdialog=null;
     }
     
@@ -116,23 +114,24 @@ class CustomForm {
 
     createGUI(id) {
 
-        
-        
-	// Create GUI
+        console.log('id=',id);
+        let parent=$(id);
         let form=this.createForm();
+        console.log('parent=',parent,form);
+        parent.append(form);
+
+	// Create GUI
+
         this.weight_input=new textElement(form,'Weight','weight',70.0);
         this.height_input=new textElement(form,'Height','height',1.70);
         let check=this.createCheckElement('Metric','metric',true);
         let button=this.createSubmitButton('Compute BMI','compute');
 
-        let button2=this.createSubmitButton('Add More','addmore');
 
         form.append(check);
         form.append(button);
-        form.append(button2);
-        
 
-        $('id').append(form);
+
         
 	//this.appendChild(form[0]); // mapping for Jquery to regular web element
 	this.metric_input=form.find(`[name='metric']`);

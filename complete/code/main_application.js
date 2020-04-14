@@ -15,17 +15,7 @@ const bioimagesuiteweb=window.bioimagesuiteweb;
 const webutil=bioimagesuiteweb.webutil;
 const webfileutil=bioimagesuiteweb.webfileutil;
 const pwautils=require('pwautils');
-// -----------------------------------------------------------------
-/**
- * The custom form element
- *
- * to access simply include this file into your code and then add this as an element to your html page
- *
- * @example
- *  <custom-form   id="viewer_menubar"></custom-form> 
- *
- */
-
+const formElement=require('form');
 
 class CustomMainApplication extends  HTMLElement {
 
@@ -46,11 +36,15 @@ class CustomMainApplication extends  HTMLElement {
 
 	// Get the Managed Elements themselves
 	let menubar = document.querySelector(menubarid).getMenuBar();
-	let form = document.querySelector(formid);
+        console.log('formid',formid);
+        let form=new formElement();
+
 
 	// Create File Menu
 	let fmenu=webutil.createTopMenuBarMenu("File",menubar);
 
+        console.log(form);
+        
         webfileutil.createFileMenuItem(fmenu,'Load Application State',
                                        (f) => {
                                            form.load(f);
@@ -99,6 +93,9 @@ class CustomMainApplication extends  HTMLElement {
             // if possible optionally add an 'install application' button to this
             pwautils.addInstallButton(hmenu);
         }
+
+        console.log('Creating form');
+        form.createGUI(formid);
     }
     
     /** Show about dialog*/

@@ -215,8 +215,9 @@ gulp.task('webackwatch', (done) => {
 // - - - - - - - - - - - - - - - - - - - -
 gulp.task('webpack', (done) => {
 
-
-    let cmd='webpack-cli --config '+path.join('config','webpack.config.js');
+    const exepath= path.resolve(path.join(path.join(__dirname,'node_modules','.bin')));
+    const webpack= path.join(exepath,'webpack-cli');
+    let cmd=webpack+' --config '+path.join('config','webpack.config.js');
     if (options.webpackwatch)
         cmd+=" --watch";
 
